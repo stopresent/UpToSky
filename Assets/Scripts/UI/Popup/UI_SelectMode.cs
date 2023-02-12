@@ -34,6 +34,7 @@ public class UI_SelectMode : UI_Popup
     void ToStoryGameScene()
     {
         // 게임 시작
+        // 스토리 모드에 맞게 게임씬이 바뀌어야 함
         Debug.Log("스토리 모드 게임 시작!");
         Managers.UI.ClosePopupUI(this);
 
@@ -44,6 +45,7 @@ public class UI_SelectMode : UI_Popup
     void ToScoreGameScene()
     {
         // 게임 시작
+        // 스토리 모드에 맞게 게임씬이 바뀌어야 함
         Debug.Log("스코어 모드 게임 시작!");
         Managers.UI.ClosePopupUI(this);
 
