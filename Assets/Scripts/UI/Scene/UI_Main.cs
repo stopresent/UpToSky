@@ -7,10 +7,11 @@ public class UI_Main : UI_Scene
 {
     enum Buttons
     {
-        GameStart,
-        QuitGame,
-        Explan,
-        Developer,
+        GameStartBtn,
+        QuitGameBtn,
+        ExplanBtn,
+        CollectionBtn,
+        DeveloperBtn,
     }
 
     enum Texts
@@ -34,10 +35,11 @@ public class UI_Main : UI_Scene
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
 
-        GetButton((int)Buttons.GameStart).gameObject.BindEvent(ToGameScene);
-        GetButton((int)Buttons.QuitGame).gameObject.BindEvent(QuitGame);
-        GetButton((int)Buttons.Explan).gameObject.BindEvent(ExplanGame);
-        GetButton((int)Buttons.Developer).gameObject.BindEvent(ShowDeveloper);
+        GetButton((int)Buttons.GameStartBtn).gameObject.BindEvent(ToGameScene);
+        GetButton((int)Buttons.QuitGameBtn).gameObject.BindEvent(QuitGame);
+        GetButton((int)Buttons.ExplanBtn).gameObject.BindEvent(ExplanGame);
+        GetButton((int)Buttons.CollectionBtn).gameObject.BindEvent(Collection);
+        GetButton((int)Buttons.DeveloperBtn).gameObject.BindEvent(ShowDeveloper);
 
         return true;
     }
@@ -47,8 +49,10 @@ public class UI_Main : UI_Scene
         // 게임 시작
         Debug.Log("게임 시작!");
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
-        Managers.UI.ShowSceneUI<UI_Game>();
+        Managers.UI.ShowPopupUI<UI_SelectMode>();
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        //Managers.UI.ShowSceneUI<UI_Game>();
     }
 
     void QuitGame()
@@ -63,8 +67,14 @@ public class UI_Main : UI_Scene
         // TODO
         // 게임 설명 팝업 띄우기
         Debug.Log("이 게임은 이런 게임!");
+        Managers.UI.ShowPopupUI<UI_HowToGame>();
 
+    }
 
+    void Collection()
+    {
+        Debug.Log("콜렉션 창");
+        Managers.UI.ShowPopupUI<UI_Collection>();
     }
 
     void ShowDeveloper()
@@ -72,7 +82,7 @@ public class UI_Main : UI_Scene
         // TODO
         // 개발자 소개..
         Debug.Log("하소연 프로젝트..!");
-
+        Managers.UI.ShowPopupUI<UI_ShowDeveloper>();
 
     }
 }
