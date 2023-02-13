@@ -13,6 +13,8 @@ public class GameScene : BaseScene
         SceneType = Define.Scene.Game;
         Managers.UI.ShowSceneUI<UI_Game>();
         Debug.Log("Init");
+
+        Managers.Resource.Instantiate("Player");
         return true;
     }
 }

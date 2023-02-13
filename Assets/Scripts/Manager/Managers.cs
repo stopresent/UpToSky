@@ -40,7 +40,6 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             s_resourceManager.Init();
-
             Application.targetFrameRate = 60;
         }
     }
