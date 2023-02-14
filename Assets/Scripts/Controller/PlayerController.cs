@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour
         pRigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
+
         if(Input.GetKeyDown(KeyCode.W))
         {
             pRigid.velocity += Vector2.up * 7;

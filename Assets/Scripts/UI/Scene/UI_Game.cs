@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UI_Game : UI_Scene
 {
@@ -24,6 +26,8 @@ public class UI_Game : UI_Scene
 
     }
 
+    public int highestScore;
+    public int Score;
 
     private void Start()
     {
@@ -41,6 +45,20 @@ public class UI_Game : UI_Scene
         GetButton((int)Buttons.SettingBtn).gameObject.BindEvent(Setting);
 
         return true;
+    }
+
+    private void Update()
+    {
+        Score = (int)GameObject.Find("Player").transform.position.y;
+        if(highestScore < Score)
+            highestScore = Score;
+
+        RefreshUI();
+    }
+
+    void RefreshUI()
+    {
+        GetText((int)Texts.ScoreText).text = String.Format("{0:#,###} m", $"{Score}");
     }
 
     void Setting()

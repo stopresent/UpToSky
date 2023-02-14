@@ -14,7 +14,8 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_Game>();
         Debug.Log("Init");
 
-        Managers.Resource.Instantiate("Player");
+        GameObject player = Managers.Resource.Instantiate("Player");
+        player.transform.position = GameObject.Find("StartPoint").transform.position;
         return true;
     }
 }
