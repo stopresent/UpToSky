@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class UI_Game : UI_Scene
 {
+    GameObject _player;
+
     enum Buttons
     {
         SettingBtn,
@@ -33,10 +36,43 @@ public class UI_Game : UI_Scene
         Init();
     }
 
+    private void Update()
+    {
+        if (Managers.Game.Mode != Define.Mode.StoryMode) return;
+
+        if (_player.transform.position.y < 100)
+        {
+            // 도시 브금
+        }
+        else if (_player.transform.position.y < 500)
+        {
+            // 에베레스트 브금
+        }
+        else if (_player.transform.position.y < 1000)
+        {
+            // 하늘 세계 브금
+        }
+        else if (_player.transform.position.y < 2000)
+        {
+            // 성층권 브금
+        }
+        else if (_player.transform.position.y < 5000)
+        {
+            // 열권 브금
+        }
+        else
+        {
+            // 우주 브금
+        }
+
+    }
+
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
+
+        _player = GameObject.Find("Player").gameObject;
 
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
@@ -75,7 +111,7 @@ public class UI_Game : UI_Scene
     {
         // TODO 무한 배경 OR 우주니까 배경 고정?
         Managers.Sound.Clear();
-        Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm);
+        Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm); // TODO 스코어 모드 전용 브금으로 교체
         GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/ScoreModeBGImage");
         //GetImage((int)Images.ScoreBG).gameObject.SetActive(true);
     }

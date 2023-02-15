@@ -7,7 +7,7 @@ public class BlockDestroyer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Block")
+        if (collision.gameObject.tag == "Block")
             Destroy(collision.gameObject);
     }
 }

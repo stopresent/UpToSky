@@ -8,4 +8,5 @@ public class GameManagerEx
 
     public Define.Mode Mode { get { return _mode; } set { _mode = value; } }
 
+
 }
