@@ -1,17 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static Define;
 
 public class UI_Setting : UI_Popup
 {
+    AudioSource CurrentBGM = Managers.Sound.GetCurrent();
+
+    bool _isMute = false;
+
     enum Buttons
     {
         BackBtn,
+        MuteBtn,
     }
 
-    enum Texts
+    enum Objects
     {
+        SoundSlider,
+    }
 
+    private void Update()
+    {
+        if (_isMute == true) return;
+
+        SoundControl();
     }
 
     public override bool Init()
@@ -19,16 +33,46 @@ public class UI_Setting : UI_Popup
         if (base.Init() == false)
             return false;
 
-        BindButton(typeof(Buttons));
-        BindText(typeof(Texts));
+        Time.timeScale = 0;
 
-        GetButton((int)Buttons.BackBtn).gameObject.BindEvent(Back);
+        BindButton(typeof(Buttons));
+        BindObject(typeof(Objects));
+
+        GetButton((int)Buttons.BackBtn).gameObject.BindEvent(BackToGame);
+        GetButton((int)Buttons.MuteBtn).gameObject.BindEvent(MuteSound);
+
+        GetObject((int)Objects.SoundSlider).gameObject.BindEvent(SoundControl);
+
+        //SoundInit();
 
         return true;
     }
 
-    void Back()
+    void BackToGame()
     {
+        Time.timeScale = 1;
         Managers.UI.ClosePopupUI(this);
+    }
+
+    void SoundControl()
+    {
+        CurrentBGM.volume = GetObject((int)Objects.SoundSlider).gameObject.GetOrAddComponent<Slider>().value;
+    }
+
+    void MuteSound()
+    {
+        float currentSoundVolume = Managers.Sound.GetCurrent().volume;
+
+        if (_isMute == false)
+        {
+            Managers.Sound.GetCurrent().volume = 0.0f;
+            _isMute = true;
+        }
+        else
+        {
+            Managers.Sound.GetCurrent().volume = currentSoundVolume;
+            _isMute = false;
+        }
+
     }
 }

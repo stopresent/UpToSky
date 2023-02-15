@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class UI_Game : UI_Scene
 {
@@ -35,6 +36,10 @@ public class UI_Game : UI_Scene
         if (base.Init() == false)
             return false;
 
+        // TODO 배경에 따라 브금이 바뀌어야 함
+        Managers.Sound.Clear();
+        Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm);
+
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
 
@@ -45,8 +50,6 @@ public class UI_Game : UI_Scene
 
     void Setting()
     {
-        // TODO
-        // setting 창 열고 시간 정지
         Managers.UI.ShowPopupUI<UI_Setting>();
     }
 }
