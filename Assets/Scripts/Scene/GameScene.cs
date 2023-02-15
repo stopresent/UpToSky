@@ -14,7 +14,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_Game>();
         Debug.Log("Init");
 
-        Managers.Resource.Instantiate("Player");
+        //Managers.Resource.Instantiate("Player");
         return true;
     }
 }

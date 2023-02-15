@@ -1,30 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D pRigid;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Collider2D col;
+
+    [HideInInspector] public Vector3 pos { get { return transform.position; } }
 
     private void Start()
     {
-        pRigid = gameObject.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        col = rb.GetComponent<Collider2D>();
     }
 
-    void FixedUpdate()
+    public void Push(Vector2 force)
     {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            pRigid.velocity += Vector2.up * 7;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            pRigid.velocity += Vector2.left * 2;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            pRigid.velocity += Vector2.right * 2;
-        }
-
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
+
 }
