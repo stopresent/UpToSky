@@ -43,8 +43,6 @@ public class UI_Setting : UI_Popup
 
         GetObject((int)Objects.SoundSlider).gameObject.BindEvent(SoundControl);
 
-        //SoundInit();
-
         return true;
     }
 
@@ -56,6 +54,7 @@ public class UI_Setting : UI_Popup
 
     void SoundControl()
     {
+        if (_isMute) return;
         CurrentBGM.volume = GetObject((int)Objects.SoundSlider).gameObject.GetOrAddComponent<Slider>().value;
     }
 
@@ -66,11 +65,13 @@ public class UI_Setting : UI_Popup
         if (_isMute == false)
         {
             Managers.Sound.GetCurrent().volume = 0.0f;
+            GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOn");
             _isMute = true;
         }
         else
         {
             Managers.Sound.GetCurrent().volume = currentSoundVolume;
+            GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOff");
             _isMute = false;
         }
 

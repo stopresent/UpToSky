@@ -34,7 +34,20 @@ public class BlockSpawner : MonoBehaviour
 
         int point = Random.Range(1, spawnCount);
 
-        GameObject block = Managers.Resource.Instantiate("Block");
-        block.transform.position = spawnPoints[point].position;
+        int randRange = Random.Range(1, 100);
+
+        if (randRange <= 40)
+        {
+            GameObject breakableBlock = Managers.Resource.Instantiate("BreakableBlock");
+            breakableBlock.transform.position = spawnPoints[point].position;
+
+        }
+        else if (randRange <= 100)
+        {
+            GameObject block = Managers.Resource.Instantiate("Block");
+            block.transform.position = spawnPoints[point].position;
+
+        }
+
     }
 }

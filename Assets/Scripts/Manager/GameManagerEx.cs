@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class GameManagerEx
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Define.Mode _mode = Define.Mode.Unknown;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Define.Mode Mode { get { return _mode; } set { _mode = value; } }
+
 }

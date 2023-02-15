@@ -29,5 +29,11 @@ public class Define
         Max,
     }
 
+    public enum Mode
+    {
+        Unknown,
+        StoryMode,
+        ScoreMode,
+    }
 
 }

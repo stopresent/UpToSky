@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
         pRigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "BreakableBlock")
+            Destroy(collision.gameObject, 3f);
+    }
+
     void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.W))
