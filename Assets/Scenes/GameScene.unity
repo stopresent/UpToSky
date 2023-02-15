@@ -1245,8 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trajectory: {fileID: 1710394266}
-  player:
-  - {fileID: 1890762424}
+  player: {fileID: 1890762424}
 --- !u!4 &1491755174
 Transform:
   m_ObjectHideFlags: 0
