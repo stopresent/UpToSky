@@ -131,7 +131,7 @@ public class UI_Game : UI_Scene
     {
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm);
-        //GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/StoryModeBGImage");
+        Managers.Resource.Instantiate("StoryModeBG");
 
         // 배경은 높이에 따라 달라지므로 높이를 측정하여 특정 높이가 됐을 때 브금 변경?
     }

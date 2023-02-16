@@ -18,7 +18,7 @@ public class Sensor : MonoBehaviour
             return;
 
         stayingTime += Time.deltaTime;
-        Elevator.GetComponent<Rigidbody2D>().velocity = collision.attachedRigidbody.velocity * 0.8f;
+        Elevator.GetComponent<Rigidbody2D>().velocity = collision.attachedRigidbody.velocity;
 
         if (collision.GetComponent<Rigidbody2D>().velocity.y == 0)
             Elevator.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(Vector2.up * 6, Vector2.up * 1, 0.5f);

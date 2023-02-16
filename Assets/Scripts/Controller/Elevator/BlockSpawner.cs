@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-    public float spawnInterval = 1.0f;
+    public float spawnInterval = 0.5f;
     public float prevSpawnTime = 0.0f;
     Vector3 min;
     Vector3 max;
