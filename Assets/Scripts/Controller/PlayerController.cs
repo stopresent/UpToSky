@@ -29,4 +29,12 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Block")
+            return;
+        
+        if(rb.velocity.y < 0 )
+            rb.velocity.Set(0, 0);
+    }
 }

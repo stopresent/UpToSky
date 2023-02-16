@@ -17,7 +17,7 @@ public class DragController : MonoBehaviour
     Vector2 startPoint;
     Vector2 endPoint;
     Vector2 direction;
-    Vector2 force;
+    public Vector2 force;
     float distance;
 
     private void Start()
@@ -76,7 +76,8 @@ public class DragController : MonoBehaviour
         endPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
-        force = distance * direction * PushForce;
+        force.x = distance * direction.x * PushForce;
+        force.y = Mathf.Min(distance * direction.y * PushForce, 30);
 
         trajectory.UpdateDots(player.pos, force);
     }

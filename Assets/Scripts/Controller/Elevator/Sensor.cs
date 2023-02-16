@@ -23,6 +23,9 @@ public class Sensor : MonoBehaviour
         if (collision.GetComponent<Rigidbody2D>().velocity.y == 0)
             Elevator.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(Vector2.up * 6, Vector2.up * 1, 0.5f);
 
+        if (collision.GetComponent<Rigidbody2D>().velocity.y < 0)
+            Elevator.GetComponent<Rigidbody2D>().velocity *= 0.5f;
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
