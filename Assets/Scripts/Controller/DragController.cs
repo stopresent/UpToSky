@@ -5,13 +5,11 @@ using UnityEngine;
 public class DragController : MonoBehaviour
 {
     public TrajectoryController trajectory;
-
-    // -- player와 defaultPlayer의 차이
-    // player가 여러 개일 수 
+ 
     public PlayerController player;
 
     // 미는 힘
-    float PushForce = 4f;
+    float PushForce = 6f;
     Camera cam;
 
     bool isDragging;
