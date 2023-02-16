@@ -21,7 +21,7 @@ public class Sensor : MonoBehaviour
         Elevator.GetComponent<Rigidbody2D>().velocity = collision.attachedRigidbody.velocity * 0.8f;
 
         if (collision.GetComponent<Rigidbody2D>().velocity.y == 0)
-            Elevator.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(Vector2.up * 2, Vector2.up * 1, 0.5f);
+            Elevator.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(Vector2.up * 6, Vector2.up * 1, 0.5f);
 
     }
 

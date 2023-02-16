@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.XR;
 
 public class UI_Main : UI_Scene
@@ -20,6 +22,7 @@ public class UI_Main : UI_Scene
         QuitGameText,
         ExplanText,
         DeveloperText,
+        MaxScoreText,
     }
 
     private void Start()
@@ -41,6 +44,12 @@ public class UI_Main : UI_Scene
         GetButton((int)Buttons.CollectionBtn).gameObject.BindEvent(Collection);
         GetButton((int)Buttons.DeveloperBtn).gameObject.BindEvent(ShowDeveloper);
 
+        string scoreText;
+        if (PlayerPrefs.HasKey("highestScore"))
+            scoreText = String.Format("{0:#,###} m", $"{PlayerPrefs.GetInt("highestScore")}");
+        else
+            scoreText = "0 m";
+        GetText((int)Texts.MaxScoreText).text = scoreText;
         return true;
     }
 

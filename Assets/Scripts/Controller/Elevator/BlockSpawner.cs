@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-    Transform[] spawnPoints;
-    public float spawnInterval = 0.5f;
+    public float spawnInterval = 1.0f;
     public float prevSpawnTime = 0.0f;
-    public int spawnCount;
+    Vector3 min;
+    Vector3 max;
+    Vector3 prevSpawnpoint = Vector3.zero;
 
-    private void Start()
-    {
-        spawnPoints = GetComponentsInChildren<Transform>();
-        spawnCount = spawnPoints.Length;
-    }
+    // 한번 소환되면 Y간격을 두고 소환되게끔
+    // 한 자리에서 소환되면 그 자리랑 근처에서는 소환 안되게
 
     private void Update()
     {
@@ -21,20 +20,25 @@ public class BlockSpawner : MonoBehaviour
         // 특정 조건 : Stay를 spawnInterval(2초)이상 할때
         if (getStayingTime() > prevSpawnTime + spawnInterval)
             spawnBlock();
-    }
 
-    float getStayingTime()
-    {
-        return transform.parent.GetComponentInChildren<Sensor>().stayingTime;
     }
 
     void spawnBlock()
     {
         prevSpawnTime = getStayingTime();
+        min = GetComponent<BoxCollider2D>().bounds.min;
+        max = GetComponent<BoxCollider2D>().bounds.max;
+        Vector3 newPos;
+        newPos = new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), 0);
+                
+        GameObject newBlock = Managers.Resource.Instantiate("Block");
+        newBlock.transform.position = newPos;
+                
+        prevSpawnpoint = newPos;
+    }
 
-        int point = Random.Range(1, spawnCount);
-
-        GameObject block = Managers.Resource.Instantiate("Block");
-        block.transform.position = spawnPoints[point].position;
+    float getStayingTime()
+    {
+        return transform.parent.GetComponentInChildren<Sensor>().stayingTime;
     }
 }
