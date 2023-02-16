@@ -97,7 +97,7 @@ public class UI_Game : UI_Scene
 
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm);
-        GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/StoryModeBGImage");
+        //GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/StoryModeBGImage");
 
         // 배경은 높이에 따라 달라지므로 높이를 측정하여 특정 높이가 됐을 때 브금 변경?
     }
@@ -107,7 +107,7 @@ public class UI_Game : UI_Scene
         // TODO 무한 배경 OR 우주니까 배경 고정?
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm); // TODO 스코어 모드 전용 브금으로 교체
-        GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/ScoreModeBGImage");
+        //GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/ScoreModeBGImage");
     }
 
     void Setting()
