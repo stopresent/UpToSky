@@ -30,10 +30,22 @@ public class BlockSpawner : MonoBehaviour
         max = GetComponent<BoxCollider2D>().bounds.max;
         Vector3 newPos;
         newPos = new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), 0);
-                
-        GameObject newBlock = Managers.Resource.Instantiate("Block");
-        newBlock.transform.position = newPos;
-                
+
+        int randRange = Random.Range(1, 100);
+
+        if (randRange <= 40)
+        {
+            GameObject breakableBlock = Managers.Resource.Instantiate("BreakableBlock");
+            breakableBlock.transform.position = newPos;
+
+        }
+        else if (randRange <= 100)
+        {
+            GameObject block = Managers.Resource.Instantiate("Block");
+            block.transform.position = newPos;
+
+        }
+
         prevSpawnpoint = newPos;
     }
 
@@ -41,4 +53,5 @@ public class BlockSpawner : MonoBehaviour
     {
         return transform.parent.GetComponentInChildren<Sensor>().stayingTime;
     }
+
 }
