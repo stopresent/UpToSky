@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
         // (3) Impulse: 불연속적이며 질량을 무시하지 않는다. 짧은 순간의 힘, 충돌이나 폭발과 같은 것에 쓰인다.
         // (4) Velocity: 불연속적이며 질량을 무시한다.
 
-
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 

@@ -28,6 +28,12 @@ public class DragController : MonoBehaviour
 
     private void Update()
     {
+        if (player == null)
+            return;
+
+        if (player.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+            return;
+
         // cam.ScreenToWorldPoint(Input.mousePosition): 카메라에 z 성분만큼 떨어진 거리에 평면을 놓는다.
         // 유니티는 그 평면이 스크린이라고 생각하고 그 평면의 클릭한 부분을 받아온다.
         Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
