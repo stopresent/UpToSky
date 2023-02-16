@@ -77,7 +77,7 @@ public class UI_Game : UI_Scene
     private void Update()
     {
 
-        if (Managers.Game.Mode != Define.Mode.StoryMode) return;
+        //if (Managers.Game.Mode != Define.Mode.StoryMode) return;
 
         //if (_player.transform.position.y < 100)
         //{
