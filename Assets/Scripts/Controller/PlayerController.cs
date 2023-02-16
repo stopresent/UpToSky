@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
         col = rb.GetComponent<Collider2D>();
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "BreakableBlock")
+            Destroy(collision.gameObject, 3f);
+    }
+
     // player를 실질적으로 움직이는 함수
     public void Push(Vector2 force)
     {

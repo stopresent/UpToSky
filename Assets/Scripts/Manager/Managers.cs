@@ -40,6 +40,8 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             s_resourceManager.Init();
+            s_soundManager.Init();
+
             Application.targetFrameRate = 60;
         }
     }
