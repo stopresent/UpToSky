@@ -18,7 +18,7 @@ public class UI_Dead : UI_Popup
     }
 
     int highestScore;
-
+    int gold;
     public override bool Init()
     {
         if (base.Init() == false)
@@ -33,11 +33,14 @@ public class UI_Dead : UI_Popup
         highestScore = GameObject.Find("UI_Game").GetComponent<UI_Game>().highestScore;
         GetText((int)Texts.ScoreText).text = $"Your Score : {highestScore}m";
 
-        // 하이스코어 저장
+        #region 저장
+        gold = GameObject.Find("UI_Game").GetComponent<UI_Game>().Gold;
         if (PlayerPrefs.HasKey("highestScore"))
             highestScore = PlayerPrefs.GetInt("highestScore") > highestScore ? PlayerPrefs.GetInt("highestScore") : highestScore;
 
         PlayerPrefs.SetInt("highestScore", highestScore);
+        PlayerPrefs.SetInt("gold", gold);
+        #endregion
 
         return true;
     }
