@@ -44,6 +44,10 @@ public class UI_Main : UI_Scene
         GetButton((int)Buttons.CollectionBtn).gameObject.BindEvent(Collection);
         GetButton((int)Buttons.DeveloperBtn).gameObject.BindEvent(ShowDeveloper);
 
+        // 메인 브금이 있으면 추가
+        // TODO
+        // Managers.Sound.Play("");
+
         string scoreText;
         if (PlayerPrefs.HasKey("highestScore"))
             scoreText = String.Format("{0:#,###} m", $"{PlayerPrefs.GetInt("highestScore")}");
@@ -60,8 +64,9 @@ public class UI_Main : UI_Scene
 
         Managers.UI.ShowPopupUI<UI_SelectMode>();
 
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
-        //Managers.UI.ShowSceneUI<UI_Game>();
+        // UI 클릭 사운드
+        Managers.Sound.Play("Sound_OpenUI");
+
     }
 
     void QuitGame()
@@ -77,6 +82,9 @@ public class UI_Main : UI_Scene
         // 게임 설명 팝업 띄우기
         Debug.Log("이 게임은 이런 게임!");
         Managers.UI.ShowPopupUI<UI_HowToGame>();
+        Managers.Sound.Play("Sound_OpenUI");
+
+
 
     }
 
@@ -84,6 +92,7 @@ public class UI_Main : UI_Scene
     {
         Debug.Log("콜렉션 창");
         Managers.UI.ShowPopupUI<UI_Collection>();
+        Managers.Sound.Play("Sound_OpenUI");
     }
 
     void ShowDeveloper()
@@ -92,6 +101,7 @@ public class UI_Main : UI_Scene
         // 개발자 소개..
         Debug.Log("하소연 프로젝트..!");
         Managers.UI.ShowPopupUI<UI_ShowDeveloper>();
+        Managers.Sound.Play("Sound_OpenUI");
 
     }
 }

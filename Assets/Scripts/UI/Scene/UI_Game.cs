@@ -141,7 +141,7 @@ public class UI_Game : UI_Scene
         // TODO 무한 배경 OR 우주니까 배경 고정?
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm); // TODO 스코어 모드 전용 브금으로 교체
-        //GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/ScoreModeBGImage");
+        Managers.Resource.Instantiate("ScoreModeBG");
     }
 
     void Setting()

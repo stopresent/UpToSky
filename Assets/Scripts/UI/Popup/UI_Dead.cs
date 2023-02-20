@@ -24,6 +24,10 @@ public class UI_Dead : UI_Popup
         if (base.Init() == false)
             return false;
 
+        // TODO
+        // Dead Effect
+
+
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
 
@@ -60,8 +64,11 @@ public class UI_Dead : UI_Popup
     {
         Debug.Log("메인 메뉴로 돌아옴");
         Managers.UI.ClosePopupUI(this);
+        Managers.Sound.Clear();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         Managers.UI.ShowSceneUI<UI_Main>();
+        Managers.Sound.Play("Sound_OpenUI");
+
     }
 }

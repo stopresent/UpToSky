@@ -33,6 +33,8 @@ public class UI_Setting : UI_Popup
         if (base.Init() == false)
             return false;
 
+        Managers.Sound.Play("Sound_OpenUI");
+
         Time.timeScale = 0;
 
         BindButton(typeof(Buttons));
@@ -50,6 +52,8 @@ public class UI_Setting : UI_Popup
     {
         Time.timeScale = 1;
         Managers.UI.ClosePopupUI(this);
+        Managers.Sound.Play("Sound_OpenUI");
+
     }
 
     void SoundControl()
