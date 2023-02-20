@@ -55,6 +55,9 @@ public class UI_Game : UI_Scene
 
         GetButton((int)Buttons.SettingBtn).gameObject.BindEvent(Setting);
 
+        Managers.Cutscene.InitCutsceneInfo();
+        PlayCutscene();
+
         #region 골드 불러오기
         if(PlayerPrefs.HasKey("gold"))
             Gold = PlayerPrefs.GetInt("gold");
@@ -116,6 +119,14 @@ public class UI_Game : UI_Scene
     {
         GetText((int)Texts.ScoreText).text = String.Format("{0:#,###} m", $"{Score}");
         GetText((int)Texts.GoldText).text = String.Format("{0:#,##0}", Gold);
+    }
+
+    void PlayCutscene()
+    {
+        foreach (var _loadScene in Managers.Cutscene.loadScenes)
+        {
+            Managers.Cutscene.LoadScene(_loadScene.Key, _loadScene.Value);
+        }
     }
 
     void GoldIncomeByHeight()
