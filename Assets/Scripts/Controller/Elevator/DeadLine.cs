@@ -8,7 +8,10 @@ public class DeadLine : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Coin")
+        {
             Destroy(collision.gameObject);
+            Managers.Game.CurrentBlockCount--;
+        }
 
         if (collision.gameObject.name == "Player" && playerAlive == true)
         {

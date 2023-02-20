@@ -9,6 +9,7 @@ public class UI_Setting : UI_Popup
     AudioSource CurrentBGM = Managers.Sound.GetCurrent();
 
     bool _isMute = false;
+    bool _isOpen = false;
 
     enum Buttons
     {
@@ -45,11 +46,40 @@ public class UI_Setting : UI_Popup
 
         GetObject((int)Objects.SoundSlider).gameObject.BindEvent(SoundControl);
 
+        ShowMuteIcon();
+
+        if (PlayerPrefs.HasKey("Soundness"))
+            GetObject((int)Objects.SoundSlider).gameObject.GetOrAddComponent<Slider>().value = PlayerPrefs.GetFloat("Soundness");
+
+        _isOpen = true;
+        PlayerPrefs.SetInt("OnSettingUI", System.Convert.ToInt16(_isOpen));
+
         return true;
+    }
+
+    void ShowMuteIcon()
+    {
+        if (PlayerPrefs.GetInt("IsMute") == 0)
+        {
+            GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOff");
+            _isMute = false;
+        }
+        else
+        {
+            GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOn");
+            _isMute = true;
+        }
     }
 
     void BackToGame()
     {
+        if (!_isMute)
+            PlayerPrefs.SetFloat("Soundness", CurrentBGM.volume);
+        PlayerPrefs.SetInt("IsMute", System.Convert.ToInt16(_isMute));
+
+        _isOpen= false;
+        PlayerPrefs.SetInt("OnSettingUI", System.Convert.ToInt16(_isOpen));
+
         Time.timeScale = 1;
         Managers.UI.ClosePopupUI(this);
         Managers.Sound.Play("Sound_OpenUI");
@@ -64,17 +94,16 @@ public class UI_Setting : UI_Popup
 
     void MuteSound()
     {
-        float currentSoundVolume = Managers.Sound.GetCurrent().volume;
-
         if (_isMute == false)
         {
+            PlayerPrefs.SetFloat("Soundness", CurrentBGM.volume);
             Managers.Sound.GetCurrent().volume = 0.0f;
             GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOn");
             _isMute = true;
         }
         else
         {
-            Managers.Sound.GetCurrent().volume = currentSoundVolume;
+            Managers.Sound.GetCurrent().volume = PlayerPrefs.GetFloat("Soundness");
             GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOff");
             _isMute = false;
         }

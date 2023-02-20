@@ -131,6 +131,14 @@ public class UI_Game : UI_Scene
     {
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm);
+        if (PlayerPrefs.HasKey("Soundness"))
+            Managers.Sound.GetCurrent().volume = PlayerPrefs.GetFloat("Soundness");
+        if (PlayerPrefs.GetInt("IsMute") == 1)
+        {
+            PlayerPrefs.SetFloat("Soundness", Managers.Sound.GetCurrent().volume);
+            Managers.Sound.GetCurrent().volume = 0.0f;
+        }
+
         Managers.Resource.Instantiate("StoryModeBG");
 
         // 배경은 높이에 따라 달라지므로 높이를 측정하여 특정 높이가 됐을 때 브금 변경?
@@ -141,6 +149,14 @@ public class UI_Game : UI_Scene
         // TODO 무한 배경 OR 우주니까 배경 고정?
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm); // TODO 스코어 모드 전용 브금으로 교체
+        if (PlayerPrefs.HasKey("Soundness"))
+            Managers.Sound.GetCurrent().volume = PlayerPrefs.GetFloat("Soundness");
+        if (PlayerPrefs.GetInt("IsMute") == 1)
+        {
+            PlayerPrefs.SetFloat("Soundness", Managers.Sound.GetCurrent().volume);
+            Managers.Sound.GetCurrent().volume = 0.0f;
+        }
+
         Managers.Resource.Instantiate("ScoreModeBG");
     }
 

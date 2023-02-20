@@ -52,9 +52,9 @@ public class UI_Dead : UI_Popup
     void ToScoreGameScene()
     {
         // 게임 시작
-        // 스토리 모드에 맞게 게임씬이 바뀌어야 함
-        Debug.Log("스코어 모드 게임 시작!");
+        // 스토리 모드에 맞게 게임씬이 바뀌어야 함\
         Managers.UI.ClosePopupUI(this);
+        Managers.Game.CurrentBlockCount = 0;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         Managers.UI.ShowSceneUI<UI_Game>();
@@ -65,6 +65,7 @@ public class UI_Dead : UI_Popup
         Debug.Log("메인 메뉴로 돌아옴");
         Managers.UI.ClosePopupUI(this);
         Managers.Sound.Clear();
+        Managers.Game.CurrentBlockCount = 0;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         Managers.UI.ShowSceneUI<UI_Main>();
