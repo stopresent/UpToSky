@@ -82,7 +82,7 @@ public class UI_Setting : UI_Popup
 
         Time.timeScale = 1;
         Managers.UI.ClosePopupUI(this);
-        Managers.Sound.Play("Sound_OpenUI");
+        Managers.Sound.Play("Sound_CloseUI");
 
     }
 

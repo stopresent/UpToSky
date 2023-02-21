@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.XR;
+using static Define;
 
 public class UI_Main : UI_Scene
 {
@@ -44,9 +45,8 @@ public class UI_Main : UI_Scene
         GetButton((int)Buttons.CollectionBtn).gameObject.BindEvent(Collection);
         GetButton((int)Buttons.DeveloperBtn).gameObject.BindEvent(ShowDeveloper);
 
-        // 메인 브금이 있으면 추가
-        // TODO
-        // Managers.Sound.Play("");
+        Managers.Sound.Clear();
+        Managers.Sound.Play("BGM/Sound_Main", Sound.Bgm);
 
         string scoreText;
         if (PlayerPrefs.HasKey("highestScore"))

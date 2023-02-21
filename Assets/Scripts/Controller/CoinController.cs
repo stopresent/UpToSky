@@ -10,6 +10,7 @@ public class CoinController : MonoBehaviour
             return;
 
         GameObject.Find("UI_Game").GetComponent<UI_Game>().Gold += 1;
+        Managers.Sound.Play("Sound_GetCoin");
         Destroy(gameObject);
     }
 

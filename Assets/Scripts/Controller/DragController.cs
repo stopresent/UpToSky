@@ -45,6 +45,7 @@ public class DragController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             isDragging = true;
+            Managers.Sound.Play("Sound_Charging");
             OnDragStart();
         }
 

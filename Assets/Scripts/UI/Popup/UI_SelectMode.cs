@@ -57,6 +57,7 @@ public class UI_SelectMode : UI_Popup
 
     void Close()
     {
+        Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
     }
 

@@ -23,6 +23,7 @@ public class UI_ShowDeveloper : UI_Popup
 
     void Close()
     {
+        Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
     }
 

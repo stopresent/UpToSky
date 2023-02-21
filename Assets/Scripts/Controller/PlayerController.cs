@@ -39,8 +39,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Block")
             return;
-        
-        if(rb.velocity.y < 0 )
+
+        if (rb.velocity.y < 0 )
+        {
+            Managers.Sound.Play("Sound_Landing");
             rb.velocity.Set(0, 0);
+        }
     }
 }

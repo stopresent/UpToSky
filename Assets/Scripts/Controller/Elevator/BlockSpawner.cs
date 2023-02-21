@@ -10,8 +10,7 @@ public class BlockSpawner : MonoBehaviour
     Vector3 min;
     Vector3 max;
     Vector3 prevSpawnpoint = Vector3.zero;
-
-    UnityEngine.Collider2D[] collider2Ds = new UnityEngine.Collider2D[4];
+    Vector2 newPos;
 
     // 한번 소환되면 Y간격을 두고 소환되게끔
     // 한 자리에서 소환되면 그 자리랑 근처에서는 소환 안되게
@@ -65,16 +64,25 @@ public class BlockSpawner : MonoBehaviour
             min = GetComponent<BoxCollider2D>().bounds.min;
             max = GetComponent<BoxCollider2D>().bounds.max;
 
-            Vector3 newPos;
-
             // TODO
             // newPos 근처에 블럭이 있는지 체크해야함.
+            // 진짜 열심히 생각했는데 모르겠다...
             while (true)
             {
-                newPos = new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), 0);
+                newPos = new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
 
-                if (Physics2D.OverlapCircleNonAlloc(newPos, 100, collider2Ds, LayerMask.GetMask("Block")) == 0)
+                OnTriggerEnter2D onTriggerEnter2D = new OnTriggerEnter2D();
+                onTriggerEnter2D.position = newPos;
+                Collider2D collider2D =  Physics2D.OverlapCircle(newPos, 1.5f, LayerMask.GetMask("Block"));
+                if (!collider2D)
+                {
+                    Debug.Log("Not Overlap");
                     break;
+                }
+                else
+                {
+                    Debug.Log($"Overlap {newPos}, {collider2D.name} 위치 재설정 필요");
+                }
             }
 
             int randRange = Random.Range(1, 100);
@@ -95,7 +103,7 @@ public class BlockSpawner : MonoBehaviour
             }
         }
 
-        gameObject.transform.position = gameObject.transform.position + new Vector3(0, 8, 0);
+        gameObject.transform.position = gameObject.transform.position + new Vector3(0, 7.5f, 0);
 
     }
 

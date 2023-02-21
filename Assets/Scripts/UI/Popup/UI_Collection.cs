@@ -69,6 +69,7 @@ public class UI_Collection : UI_Popup
 
     void Close()
     {
+        Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
     }
 }
