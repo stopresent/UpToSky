@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DragController : MonoBehaviour
 {
@@ -41,8 +42,8 @@ public class DragController : MonoBehaviour
         // 유니티는 그 평면이 스크린이라고 생각하고 그 평면의 클릭한 부분을 받아온다.
         Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        // 터치했을 때,
-        if (Input.GetMouseButtonDown(0))
+        // 터치했을 때, UI에 터치했을 때는 반응 안 하게(컷씬 때 게임 실행되는 거 막으려고)
+        if (!EventSystem.current.IsPointerOverGameObject()&&Input.GetMouseButtonDown(0))
         {
             isDragging = true;
             Managers.Sound.Play("Sound_Charging");
@@ -50,7 +51,7 @@ public class DragController : MonoBehaviour
         }
 
         // 터치가 끝났을 때
-        if(Input.GetMouseButtonUp(0))
+        if(!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonUp(0))
         {
             if(player != null)
             {

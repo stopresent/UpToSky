@@ -16,12 +16,14 @@ public class Managers : MonoBehaviour
     private static UIManager s_uiManager = new UIManager();
     private static ResourceManager s_resourceManager = new ResourceManager();
     private static SoundManager s_soundManager = new SoundManager();
+    private static CutsceneManager s_cutsceneManger = new CutsceneManager();
 
     public static GameManagerEx Game { get { Init(); return s_gameManager; } }
     public static DataManager Data { get { Init(); return s_dataManager; } }
     public static UIManager UI { get { Init(); return s_uiManager; } }
     public static ResourceManager Resource { get { Init(); return s_resourceManager; } }
     public static SoundManager Sound { get { Init(); return s_soundManager; } }
+    public static CutsceneManager Cutscene { get { Init(); return s_cutsceneManger; } }
 
     private void Start()
     {

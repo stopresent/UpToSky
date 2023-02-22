@@ -27,6 +27,12 @@ public class UI_Collection : UI_Popup
         EndingCollection,
     }
 
+    enum Item
+    {
+        Skin,
+        Ending,
+    }
+
     PlayTab _tab = PlayTab.CharacterSkin;
 
     public override bool Init()
@@ -43,7 +49,10 @@ public class UI_Collection : UI_Popup
         GetButton((int)Buttons.CharacterSkinTabBtn).gameObject.BindEvent(() => ShowTab(PlayTab.CharacterSkin));
         GetButton((int)Buttons.EndingCollectionTabBtn).gameObject.BindEvent(() => ShowTab(PlayTab.EndingCollection));
         GetObject((int)GameObjects.CharacterSkinTab).gameObject.SetActive(true);
+        GetObject((int)Item.Skin).gameObject.SetActive(true);
+
         GetObject((int)GameObjects.EndingCollectionTab).gameObject.SetActive(false);
+        GetObject((int)Item.Ending).gameObject.SetActive(true);
 
         return true;
     }
@@ -59,9 +68,11 @@ public class UI_Collection : UI_Popup
         {
             case PlayTab.CharacterSkin:
                 GetObject((int)GameObjects.CharacterSkinTab).gameObject.SetActive(true);
+                GetObject((int)Item.Skin).gameObject.SetActive(true);
                 break;
             case PlayTab.EndingCollection:
                 GetObject((int)GameObjects.EndingCollectionTab).gameObject.SetActive(true);
+                GetObject((int)Item.Ending).gameObject.SetActive(true);
                 break;
         }
 
