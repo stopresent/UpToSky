@@ -85,6 +85,8 @@ public class DragController : MonoBehaviour
     // 드래그가 끝났을 때 궤적을 비활성화 시키고 플레이어를 움직인다.
     private void OnDragEnd()
     {
+        if(player.GetComponent<Rigidbody2D>().constraints == RigidbodyConstraints2D.FreezeAll)
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.Push(force);
         trajectory.Hide();
     }

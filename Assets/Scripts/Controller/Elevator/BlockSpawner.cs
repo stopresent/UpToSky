@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-    public float spawnInterval = 0.5f;
-    public float prevSpawnTime = 0.0f;
     Vector3 min;
     Vector3 max;
-    Vector3 prevSpawnpoint = Vector3.zero;
+    public bool Spawn = false;
 
     // 한번 소환되면 Y간격을 두고 소환되게끔
     // 한 자리에서 소환되면 그 자리랑 근처에서는 소환 안되게
@@ -18,14 +16,13 @@ public class BlockSpawner : MonoBehaviour
     {
         // 특정 조건을 만족할때만 랜덤한 위치에 블록을 만든다
         // 특정 조건 : Stay를 spawnInterval(2초)이상 할때
-        if (getStayingTime() > prevSpawnTime + spawnInterval)
+        if(Spawn == true)
             spawnBlock();
 
     }
 
     void spawnBlock()
     {
-        prevSpawnTime = getStayingTime();
         min = GetComponent<BoxCollider2D>().bounds.min;
         max = GetComponent<BoxCollider2D>().bounds.max;
         Vector3 newPos;
@@ -46,12 +43,7 @@ public class BlockSpawner : MonoBehaviour
 
         }
 
-        prevSpawnpoint = newPos;
-    }
-
-    float getStayingTime()
-    {
-        return transform.parent.GetComponentInChildren<Sensor>().stayingTime;
+        Spawn = false;
     }
 
 }
