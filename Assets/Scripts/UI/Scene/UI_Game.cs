@@ -15,6 +15,7 @@ public class UI_Game : UI_Scene
     enum Buttons
     {
         SettingBtn,
+        SpiderManModeBtn,
     }
 
     enum Texts
@@ -35,9 +36,12 @@ public class UI_Game : UI_Scene
 
     public int highestScore;
     public int Score;
+    public int PrevBlockSpawnH;
+    public int BlockSpawnHInterval = 2; // 매 2미터마다 블록이 스폰된다
     public int Gold;
     public int PrevIncomeH = 0;
     public int GoldIncomeHInterval = 10; // 매 10미터마다 골드를 받는다
+    public float PlayTime = 0.0f;
 
     private void Start()
     {
@@ -56,7 +60,7 @@ public class UI_Game : UI_Scene
         BindImage(typeof(Images));
 
         GetButton((int)Buttons.SettingBtn).gameObject.BindEvent(Setting);
-
+        GetButton((int)Buttons.SpiderManModeBtn).gameObject.BindEvent(SpiderManMode);
         #region 골드 불러오기
         if (PlayerPrefs.HasKey("gold"))
             Gold = PlayerPrefs.GetInt("gold");
@@ -78,10 +82,11 @@ public class UI_Game : UI_Scene
 
     private void Update()
     {
-
         CutScene(); // 마우스 클릭 때마다 컷씬 변경
         
 
+
+        PlayTime += Time.deltaTime;
         Score = (int)GameObject.Find("Player").transform.position.y;
         if (highestScore < Score)
             highestScore = Score;
@@ -127,6 +132,11 @@ public class UI_Game : UI_Scene
             }
         }
 
+        if (Score > PrevBlockSpawnH + BlockSpawnHInterval)
+        {
+            PrevBlockSpawnH = Score;
+            GameObject.Find("BlockSpawner").GetComponent<BlockSpawner>().Spawn = true;
+        }
         RefreshUI();
         GoldIncomeByHeight();
     }
@@ -205,5 +215,10 @@ public class UI_Game : UI_Scene
     void Setting()
     {
         Managers.UI.ShowPopupUI<UI_Setting>();
+    }
+
+    void SpiderManMode()
+    {
+        GameObject.Find("Player").AddComponent<SpiderManMode>();
     }
 }

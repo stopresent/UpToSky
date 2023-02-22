@@ -7,11 +7,6 @@ public class DeadLine : MonoBehaviour
     bool playerAlive = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Coin")
-        {
-            Destroy(collision.gameObject);
-            Managers.Game.CurrentBlockCount--;
-        }
 
         if (collision.gameObject.name == "Player" && playerAlive == true)
         {
@@ -19,6 +14,5 @@ public class DeadLine : MonoBehaviour
             Destroy(GameObject.Find("Player").GetComponent<PlayerController>());
             playerAlive = false;
         }
-
     }
 }

@@ -6,6 +6,7 @@ public class Sensor : MonoBehaviour
 {
     public float stayingTime = 0.0f;
     GameObject Elevator;
+    float PlayerVeloY;
 
     private void Start()
     {
@@ -17,13 +18,15 @@ public class Sensor : MonoBehaviour
         if (collision.gameObject.name != "Player")
             return;
 
+        PlayerVeloY = collision.GetComponent<Rigidbody2D>().velocity.y;
+
         stayingTime += Time.deltaTime;
         Elevator.GetComponent<Rigidbody2D>().velocity = collision.attachedRigidbody.velocity;
 
-        if (collision.GetComponent<Rigidbody2D>().velocity.y == 0)
+        if (PlayerVeloY == 0)
             Elevator.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(Vector2.up * 6, Vector2.up * 1, 0.5f);
 
-        if (collision.GetComponent<Rigidbody2D>().velocity.y < 0)
+        if (PlayerVeloY < 0)
             Elevator.GetComponent<Rigidbody2D>().velocity *= 0.5f;
 
     }

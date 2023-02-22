@@ -16,12 +16,6 @@ public class PlayerController : MonoBehaviour
         col = rb.GetComponent<Collider2D>();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "BreakableBlock")
-            Destroy(collision.gameObject, 3f);
-    }
-
     // player를 실질적으로 움직이는 함수
     public void Push(Vector2 force)
     {
@@ -40,10 +34,22 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag != "Block")
             return;
 
-        if (rb.velocity.y < 0 )
+
+        if (GetComponent<Rigidbody2D>().velocity.y <= 5)
         {
             Managers.Sound.Play("Sound_Landing");
-            rb.velocity.Set(0, 0);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
+            
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Block")
+            return;
+
+        if(collision.gameObject.name == "BreakableBlock")
+            Destroy(collision.gameObject, 3f);
+
     }
 }

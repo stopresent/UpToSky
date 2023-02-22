@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - Coin
+  - InstantiatedWall
   layers:
   - Default
   - TransparentFX
