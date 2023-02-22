@@ -34,13 +34,11 @@ public class BlockSpawner : MonoBehaviour
         {
             GameObject breakableBlock = Managers.Resource.Instantiate("BreakableBlock");
             breakableBlock.transform.position = newPos;
-
         }
         else if (randRange <= 100)
         {
             GameObject block = Managers.Resource.Instantiate("Block");
             block.transform.position = newPos;
-
         }
 
         Spawn = false;

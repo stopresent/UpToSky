@@ -34,7 +34,7 @@ public class WallSpawner : MonoBehaviour
     void spawnBlock()
     {
         int num = Random.Range(0, 2);
-        int wallNum = Random.Range(1, 3);
+        int wallNum = Random.Range(1, 5);
         GameObject wall = Managers.Resource.Instantiate($"Wall{wallNum}");
         wall.transform.position = transform.GetChild(num).position;
     }
