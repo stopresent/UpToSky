@@ -1,6 +1,8 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using static Define;
@@ -55,9 +57,6 @@ public class UI_Game : UI_Scene
 
         GetButton((int)Buttons.SettingBtn).gameObject.BindEvent(Setting);
 
-        Managers.Cutscene.InitCutsceneInfo();
-        PlayCutscene();
-
         #region 골드 불러오기
         if(PlayerPrefs.HasKey("gold"))
             Gold = PlayerPrefs.GetInt("gold");
@@ -107,6 +106,8 @@ public class UI_Game : UI_Scene
         //    // 우주 브금
         //}
 
+        CutScene(); // 마우스 클릭 때마다 컷씬 변경
+        
         Score = (int)GameObject.Find("Player").transform.position.y;
         if(highestScore < Score)
             highestScore = Score;
@@ -121,13 +122,19 @@ public class UI_Game : UI_Scene
         GetText((int)Texts.GoldText).text = String.Format("{0:#,##0}", Gold);
     }
 
-    void PlayCutscene()
+    void CutScene()
     {
-        foreach (var _loadScene in Managers.Cutscene.loadScenes)
+        if (Managers.Cutscene.cutFinished == false && Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            Managers.Cutscene.LoadScene(_loadScene.Key, _loadScene.Value);
+            if (Managers.Cutscene.SceneNumber == 3 && Input.GetMouseButtonDown(0))
+                Managers.Cutscene.DistroyCutscene(); // 삭제
+            else if (Input.GetMouseButtonDown(0))
+                Managers.Cutscene.PlayCutscene();
+            else if (Managers.Cutscene.SceneNumber == 0)
+                Managers.Cutscene.PlayCutscene();
         }
     }
+
 
     void GoldIncomeByHeight()
     {
@@ -140,8 +147,11 @@ public class UI_Game : UI_Scene
 
     void StoryMode()
     {
+        Managers.Cutscene.InitCutsceneInfo();
+
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_Lazy", Sound.Bgm);
+
         //GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/StoryModeBGImage");
 
         // 배경은 높이에 따라 달라지므로 높이를 측정하여 특정 높이가 됐을 때 브금 변경?
