@@ -35,6 +35,13 @@ public class UI_Collection : UI_Popup
 
     PlayTab _tab = PlayTab.CharacterSkin;
 
+    Vector3 mousePos;
+
+    private void Update()
+    {
+        ClickItem();
+    }
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -52,7 +59,7 @@ public class UI_Collection : UI_Popup
         GetObject((int)Item.Skin).gameObject.SetActive(true);
 
         GetObject((int)GameObjects.EndingCollectionTab).gameObject.SetActive(false);
-        GetObject((int)Item.Ending).gameObject.SetActive(true);
+        GetObject((int)Item.Ending).gameObject.SetActive(false);
 
         return true;
     }
@@ -76,6 +83,11 @@ public class UI_Collection : UI_Popup
                 break;
         }
 
+    }
+
+    void ClickItem()
+    {
+ 
     }
 
     void Close()
