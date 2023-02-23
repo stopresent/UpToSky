@@ -84,8 +84,6 @@ public class UI_Game : UI_Scene
     {
         CutScene(); // 마우스 클릭 때마다 컷씬 변경
         
-
-
         PlayTime += Time.deltaTime;
         Score = (int)GameObject.Find("Player").transform.position.y;
         if (highestScore < Score)
@@ -93,42 +91,55 @@ public class UI_Game : UI_Scene
 
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            if (Score < 100)
+            if (Score < (int)Define.Height.City)
             {
                 // 도시브금
                 if (Managers.Sound.GetCurrent().clip == null || Managers.Sound.GetCurrent().clip.name != "Sound_City")
                     Managers.Sound.Play("BGM/Sound_City", Sound.Bgm);
                 Debug.Log($"{Managers.Sound.GetCurrent().name}");
             }
-            else if (Score < 500)
+            else if (Score < (int)Define.Height.Mountain)
             {
                 // 에베레스트 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Mountain")
                     Managers.Sound.Play("BGM/Sound_Mountain", Sound.Bgm);
             }
-            else if (Score < 1000)
+            else if (Score < (int)Define.Height.SkyWorld)
             {
                 // 하늘 세계 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_SkyWorld")
                     Managers.Sound.Play("BGM/Sound_SkyWorld", Sound.Bgm);
             }
-            else if (Score < 2000)
+            else if (Score < (int)Define.Height.Stratosphere)
             {
                 // 성층권 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Stratosphere")
                     Managers.Sound.Play("BGM/Sound_Stratosphere", Sound.Bgm);
             }
-            else if (Score < 5000)
+            else if (Score < (int)Define.Height.Thermosphere)
             {
                 // 열권 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Thermosphere")
                     Managers.Sound.Play("BGM/Sound_Thermosphere", Sound.Bgm);
             }
-            else
+            else if(Score <= (int)Define.Height.GalaxyBlues)
             {
                 // 우주 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_GalaxyBlues")
+                {
+                    // 우주로 가면 중력 낮아짐
+                    GameObject.Find("Player").GetComponent<Rigidbody2D>().gravityScale = 0.4f;
+
                     Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm);
+                }
+            }
+            else
+            {
+                // 안드로메다 도착
+                Managers.Sound.Clear();
+
+                UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
+                Managers.UI.ShowSceneUI<UI_Ending>();
             }
         }
 
@@ -209,14 +220,17 @@ public class UI_Game : UI_Scene
             Managers.Sound.GetCurrent().volume = 0.0f;
         }
 
-        Managers.Resource.Instantiate("ScoreModeBG");
+        GameObject scoreModeBG = Managers.Resource.Instantiate("ScoreModeBG");
+        GameObject elavator = GameObject.Find("Elevator");
+        if (elavator != null)
+            scoreModeBG.transform.SetParent(elavator.transform);
     }
 
     void Setting()
     {
         Managers.UI.ShowPopupUI<UI_Setting>();
     }
-
+    
     void SpiderManMode()
     {
         GameObject.Find("Player").AddComponent<SpiderManMode>();

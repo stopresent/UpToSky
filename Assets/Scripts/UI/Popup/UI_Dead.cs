@@ -56,7 +56,6 @@ public class UI_Dead : UI_Popup
         Managers.Sound.Clear();
         Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
-        Managers.Game.CurrentBlockCount = 0;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         Managers.UI.ShowSceneUI<UI_Game>();
@@ -68,7 +67,6 @@ public class UI_Dead : UI_Popup
         Managers.Sound.Clear();
         Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
-        Managers.Game.CurrentBlockCount = 0;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         Managers.UI.ShowSceneUI<UI_Main>();

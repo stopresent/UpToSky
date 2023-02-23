@@ -22,6 +22,7 @@ public class UI_Setting : UI_Popup
         SoundSlider,
     }
 
+
     private void Update()
     {
         if (_isMute == true) return;
@@ -43,6 +44,7 @@ public class UI_Setting : UI_Popup
 
         GetButton((int)Buttons.BackBtn).gameObject.BindEvent(BackToGame);
         GetButton((int)Buttons.MuteBtn).gameObject.BindEvent(MuteSound);
+
 
         GetObject((int)Objects.SoundSlider).gameObject.BindEvent(SoundControl);
 
@@ -77,7 +79,7 @@ public class UI_Setting : UI_Popup
             PlayerPrefs.SetFloat("Soundness", CurrentBGM.volume);
         PlayerPrefs.SetInt("IsMute", System.Convert.ToInt16(_isMute));
 
-        _isOpen= false;
+        _isOpen = false;
         PlayerPrefs.SetInt("OnSettingUI", System.Convert.ToInt16(_isOpen));
 
         Time.timeScale = 1;
@@ -107,6 +109,6 @@ public class UI_Setting : UI_Popup
             GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOff");
             _isMute = false;
         }
-
     }
+
 }

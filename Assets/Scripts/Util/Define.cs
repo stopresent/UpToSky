@@ -19,6 +19,7 @@ public class Define
         Dev,
         Game,
         Main,
+        Ending,
     }
 
     public enum Sound
@@ -34,6 +35,16 @@ public class Define
         Unknown,
         StoryMode,
         ScoreMode,
+    }
+
+    public enum Height
+    {
+        City = 100,
+        Mountain = 150,
+        SkyWorld = 250,
+        Stratosphere = 400,
+        Thermosphere = 650,
+        GalaxyBlues = 1004,
     }
 
 }
