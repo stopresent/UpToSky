@@ -28,16 +28,37 @@ public class InitSpawner : MonoBehaviour
 
         int randRange = Random.Range(1, 100);
 
-        if (randRange <= 40)
+        // 스토리 모드에서 초기 블럭 생성
+        if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            GameObject breakableBlock = Managers.Resource.Instantiate("BreakableBlock");
-            breakableBlock.transform.position = newPos;
+            if (randRange <= 40)
+            {
+                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/SlipBlock");
+                breakableBlock.transform.position = newPos;
 
+            }
+            else if (randRange <= 100)
+            {
+                GameObject block = Managers.Resource.Instantiate("Blocks/BouncyBlock");
+                block.transform.position = newPos;
+            }
         }
-        else if (randRange <= 100)
+
+
+        // 스코어 모드에서 초기 블럭 생성
+        if (Managers.Game.Mode == Define.Mode.ScoreMode)
         {
-            GameObject block = Managers.Resource.Instantiate("Block");
-            block.transform.position = newPos;
+            if (randRange <= 40)
+            {
+                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/BreakableBlock");
+                breakableBlock.transform.position = newPos;
+
+            }
+            else if (randRange <= 100)
+            {
+                GameObject block = Managers.Resource.Instantiate("Blocks/Block");
+                block.transform.position = newPos;
+            }
         }
     }
 

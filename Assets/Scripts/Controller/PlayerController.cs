@@ -35,6 +35,22 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag != "Block")
             return;
 
+        // 블럭들의 효과들 여기에서 추가
+
+        // 미끄러지는 블럭
+        if (collision.gameObject.name == "SlipBlock")
+        {
+            rb.AddForce(new Vector2(1.0f, 0.0f), ForceMode2D.Impulse);
+            return;
+        }
+
+
+        // 통통 튀는 블럭
+        if (collision.gameObject.name == "BouncyBlock")
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f), ForceMode2D.Impulse);
+            return;
+        }
 
         if (GetComponent<Rigidbody2D>().velocity.y <= 5)
         {
