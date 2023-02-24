@@ -15,6 +15,7 @@ public class UI_Setting : UI_Popup
     {
         BackBtn,
         MuteBtn,
+        MainBtn,
     }
 
     enum Objects
@@ -44,6 +45,8 @@ public class UI_Setting : UI_Popup
 
         GetButton((int)Buttons.BackBtn).gameObject.BindEvent(BackToGame);
         GetButton((int)Buttons.MuteBtn).gameObject.BindEvent(MuteSound);
+        GetButton((int)Buttons.MainBtn).gameObject.BindEvent(ToMainScene);
+
 
 
         GetObject((int)Objects.SoundSlider).gameObject.BindEvent(SoundControl);
@@ -109,6 +112,19 @@ public class UI_Setting : UI_Popup
             GetButton((int)Buttons.MuteBtn).gameObject.GetComponent<Image>().sprite = Managers.Resource.Load<Sprite>("Sprites/Setting/MuteOff");
             _isMute = false;
         }
+    }
+
+    void ToMainScene()
+    {
+        Time.timeScale = 1;
+        Debug.Log("메인 메뉴로 돌아옴");
+        Managers.Sound.Clear();
+        Managers.Sound.Play("Sound_CloseUI");
+        Managers.UI.ClosePopupUI(this);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        Managers.UI.ShowSceneUI<UI_Main>();
+
     }
 
 }

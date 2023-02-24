@@ -42,7 +42,7 @@ public class UI_Main : UI_Scene
         GetButton((int)Buttons.GameStartBtn).gameObject.BindEvent(ToGameScene);
         GetButton((int)Buttons.QuitGameBtn).gameObject.BindEvent(QuitGame);
         GetButton((int)Buttons.ExplanBtn).gameObject.BindEvent(ExplanGame);
-        GetButton((int)Buttons.CollectionBtn).gameObject.BindEvent(Collection);
+        //GetButton((int)Buttons.CollectionBtn).gameObject.BindEvent(Collection);
         GetButton((int)Buttons.DeveloperBtn).gameObject.BindEvent(ShowDeveloper);
 
         Managers.Sound.Clear();

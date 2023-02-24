@@ -96,7 +96,6 @@ public class UI_Game : UI_Scene
                 // 도시브금
                 if (Managers.Sound.GetCurrent().clip == null || Managers.Sound.GetCurrent().clip.name != "Sound_City")
                     Managers.Sound.Play("BGM/Sound_City", Sound.Bgm);
-                Debug.Log($"{Managers.Sound.GetCurrent().name}");
             }
             else if (Score < (int)Define.Height.Mountain)
             {

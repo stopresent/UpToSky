@@ -31,17 +31,8 @@ public class InitSpawner : MonoBehaviour
         // 스토리 모드에서 초기 블럭 생성
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            if (randRange <= 40)
-            {
-                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/BlackHole");
-                breakableBlock.transform.position = newPos;
-
-            }
-            else if (randRange <= 100)
-            {
-                GameObject block = Managers.Resource.Instantiate("Blocks/BlackHole");
-                block.transform.position = newPos;
-            }
+            GameObject Block = Managers.Resource.Instantiate("Blocks/CityBlock");
+            Block.transform.position = newPos;
         }
 
         // 스코어 모드에서 초기 블럭 생성
@@ -49,13 +40,13 @@ public class InitSpawner : MonoBehaviour
         {
             if (randRange <= 40)
             {
-                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/BreakableBlock");
-                breakableBlock.transform.position = newPos;
+                GameObject Block = Managers.Resource.Instantiate("Blocks/BlackHole");
+                Block.transform.position = newPos;
 
             }
             else if (randRange <= 100)
             {
-                GameObject block = Managers.Resource.Instantiate("Blocks/Block");
+                GameObject block = Managers.Resource.Instantiate("Blocks/SpaceBlock");
                 block.transform.position = newPos;
             }
         }

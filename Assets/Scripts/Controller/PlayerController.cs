@@ -57,10 +57,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // 떨어지는 블록
-        if (collision.gameObject.name == "BreakableBlock")
-            StartCoroutine(MakeItFall(collision.gameObject));
-
         // 열기구 블록
         if (collision.gameObject.name == "AirBalloonBlock")
             StartCoroutine(ItsAirBalloon(collision.gameObject));
@@ -113,17 +109,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "BlackHole")
             StopCoroutine("Boom");
-    }
-
-    IEnumerator MakeItFall(GameObject it)
-    {
-        yield return new WaitForSeconds(3.0f);
-        if (it == null)
-            yield break;
-        it.GetComponent<CapsuleCollider2D>().isTrigger = true;
-        it.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        it.GetComponent<Rigidbody2D>().gravityScale = 1;
-
     }
 
     IEnumerator ItsAirBalloon(GameObject it)

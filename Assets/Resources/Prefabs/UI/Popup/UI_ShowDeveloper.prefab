@@ -142,9 +142,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB514\uC790\uC774\uB108 : \uB204\uAD6C\uB204\uAD6C\n\uAC1C\uBC1C\uC790
-    : \uB204\uAD6C\uB204\uAD6C\n\n\uD558\uC18C\uC5F0 \uD504\uB85C\uC81D\uD2B8\n\n\uD50C\uB808\uC774
-    \uD574\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4..\n"
+  m_text: 'Dev By Team CozyByte
+
+    Art By NooNa
+
+
+
+    Thank you for Playing!!!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 48a313c820e86ed4bb5ba3159b58e7d4, type: 2}
   m_sharedMaterial: {fileID: 4828305753144598763, guid: 48a313c820e86ed4bb5ba3159b58e7d4, type: 2}
@@ -153,8 +159,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -171,8 +177,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
