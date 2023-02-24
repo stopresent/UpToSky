@@ -47,6 +47,7 @@ public class UI_Main : UI_Scene
 
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_Main", Sound.Bgm);
+        Managers.Cutscene.cutFinished = false;
 
         string scoreText;
         if (PlayerPrefs.HasKey("highestScore"))
