@@ -10,20 +10,6 @@ public class InitSpawner : MonoBehaviour
     float yInterval;
     int FloorNum = 4;
 
-
-    //private void Start()
-    //{
-    //    Vector3 TestPos1 = new Vector3(0, 1, 0);
-    //    Vector3 TestPos2 = new Vector3(1, 1, 0);
-
-    //    GameObject block1 = Managers.Resource.Instantiate("Block");
-    //    block1.transform.position = TestPos1;
-
-    //    GameObject block2 = Managers.Resource.Instantiate("Block");
-    //    block2.transform.position = TestPos2;
-
-    //}
-
     void Start()
     {
         area = GetComponent<BoxCollider2D>();

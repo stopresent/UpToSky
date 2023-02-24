@@ -17,7 +17,7 @@ public class BlockRepositioner : MonoBehaviour
             transform.position += transform.position - nearBlock.transform.position;
 
         if (Mathf.Abs(transform.position.x) > 2)
-            transform.position = new Vector3(2, transform.position.y, 0);
+            transform.position = new Vector3(transform.position.x > 0 ? 2 : -2, transform.position.y, 0);
 
     }
 
