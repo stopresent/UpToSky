@@ -88,9 +88,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // StartCoroutine(Boom()); 이렇게 코드를 작성하면 Stop이 안됨
-        // 둘다 string으로 넣어줘야 stop이 가능하다.
-        StartCoroutine("Boom");
+        if (collision.gameObject.name == "BlackHole")
+            // StartCoroutine(Boom()); 이렇게 코드를 작성하면 Stop이 안됨
+            // 둘다 string으로 넣어줘야 stop이 가능하다.
+            StartCoroutine("Boom");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -108,10 +109,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StopCoroutine("Boom");
+        if (collision.gameObject.name == "BlackHole")
+            StopCoroutine("Boom");
     }
 
     IEnumerator MakeItFall(GameObject it)
