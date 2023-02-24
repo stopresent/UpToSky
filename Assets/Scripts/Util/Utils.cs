@@ -51,12 +51,13 @@ public class Utils
     {
         GameObject nearestGo = null;
         float distance = float.MaxValue;
+        float minDistance = 0.001f;
         GameObject[] Gos = GameObject.FindGameObjectsWithTag(tag);
 
         foreach (GameObject Go in Gos)
         {
             float distance2 = Mathf.Abs((Go.transform.position - pos).magnitude);
-            if (Go != null && distance2 < distance)
+            if (Go != null && distance2 < distance && minDistance < distance2)
             {
                 nearestGo = Go;
                 distance = distance2;

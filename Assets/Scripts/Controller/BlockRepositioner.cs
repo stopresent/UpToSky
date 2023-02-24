@@ -5,9 +5,13 @@ using UnityEngine;
 public class BlockRepositioner : MonoBehaviour
 {
     GameObject nearBlock;
+
     void Start()
     {
         nearBlock = Utils.FindNearestObject("Block", transform.position);
+
+        if (nearBlock == null)
+            return;
 
         if( Vector3.Distance(transform.position, nearBlock.transform.position) < 1.2f )
         {

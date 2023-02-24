@@ -13,8 +13,8 @@ public class InitSpawner : MonoBehaviour
 
     private void Start()
     {
-        Vector3 TestPos1 = new Vector3(1, 1, 0);
-        Vector3 TestPos2 = new Vector3(0, 1, 0);
+        Vector3 TestPos1 = new Vector3(2, 1, 0);
+        Vector3 TestPos2 = new Vector3(1, 1, 0);
 
         GameObject block1 = Managers.Resource.Instantiate("Block");
         block1.transform.position = TestPos1;
@@ -31,7 +31,7 @@ public class InitSpawner : MonoBehaviour
     //    min = area.bounds.min;
     //    yInterval = (max.y - min.y) / FloorNum;
 
-    //    for(int i = 1;i <= FloorNum;i++)
+    //    for (int i = 1; i <= FloorNum; i++)
     //        SpawnBlock(i);
     //}
 
