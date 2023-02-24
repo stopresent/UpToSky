@@ -53,12 +53,12 @@ public class BlockSpawner : MonoBehaviour
         {
             if (PlayerY < (int)Define.Height.City || randRange <= 40)
             {
-                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/BreakableBlock");
+                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/SlipBlock");
                 breakableBlock.transform.position = newPos;
             }
             else if (PlayerY < (int)Define.Height.City || randRange <= 100)
             {
-                GameObject block = Managers.Resource.Instantiate("Blocks/Block");
+                GameObject block = Managers.Resource.Instantiate("Blocks/BouncyBlock");
                 block.transform.position = newPos;
             }
             else if (PlayerY < (int)Define.Height.Mountain || randRange <= 40)

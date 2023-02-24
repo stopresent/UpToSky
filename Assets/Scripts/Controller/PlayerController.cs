@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         // 미끄러지는 블럭
         if (collision.gameObject.name == "SlipBlock")
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0.3f, 0.0f));
+            rb.AddForce(new Vector2(1.0f, 0.0f), ForceMode2D.Impulse);
             return;
         }
 
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         // 통통 튀는 블럭
         if (collision.gameObject.name == "BouncyBlock")
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 2.0f));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f), ForceMode2D.Impulse);
             return;
         }
 
