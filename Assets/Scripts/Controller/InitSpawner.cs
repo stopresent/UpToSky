@@ -44,7 +44,6 @@ public class InitSpawner : MonoBehaviour
             }
         }
 
-
         // 스코어 모드에서 초기 블럭 생성
         if (Managers.Game.Mode == Define.Mode.ScoreMode)
         {

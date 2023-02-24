@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     // player의 위치를 가져온다.
     [HideInInspector] public Vector3 pos { get { return transform.position; } }
+    public bool isContactAnything = false;
 
     private void Start()
     {
@@ -32,8 +33,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Block")
+        if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")
             return;
+
+        isContactAnything = true;
 
         // 블럭들의 효과들 여기에서 추가
 
@@ -44,7 +47,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
         // 통통 튀는 블럭
         if (collision.gameObject.name == "BouncyBlock")
         {
@@ -52,23 +54,33 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        // 떨어지는 블록
+        if (collision.gameObject.name == "BreakableBlock")
+            StartCoroutine(MakeItFall(collision.gameObject));
+
+        // 열기구 블록
+        if (collision.gameObject.name == "AirBalloonBlock")
+            StartCoroutine(ItsAirBalloon(collision.gameObject));
+
+        // 착지
         if (GetComponent<Rigidbody2D>().velocity.y <= 5)
-        {
-            Managers.Sound.Play("Sound_Landing");
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        }
-            
+    {
+        Managers.Sound.Play("Sound_Landing");
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Block")
+        if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")
             return;
 
-        if(collision.gameObject.name == "BreakableBlock")
-        {
-            StartCoroutine(MakeItFall(collision.gameObject));
-        }
+        isContactAnything = false;
+
+        // 열기구랑 닿았다가 떨어지면
+        if (collision.gameObject.name == "AirBalloonBlock")
+            StartCoroutine(ItWasAirBalloon(collision.gameObject));
 
     }
 
@@ -80,6 +92,22 @@ public class PlayerController : MonoBehaviour
         it.GetComponent<CapsuleCollider2D>().isTrigger = true;
         it.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         it.GetComponent<Rigidbody2D>().gravityScale = 1;
+
+    }
+
+    IEnumerator ItsAirBalloon(GameObject it)
+    {
+        yield return new WaitForSeconds(1.0f);
+        it.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        it.GetComponent<Rigidbody2D>().gravityScale = 0.2f;
+    }
+
+    IEnumerator ItWasAirBalloon(GameObject it)
+    {
+        it.GetComponent<Rigidbody2D>().gravityScale = -0.2f;
+        Destroy(it.GetComponent<CapsuleCollider2D>());
+        yield return new WaitForSeconds(4.0f);
+        Destroy(it);
 
     }
 

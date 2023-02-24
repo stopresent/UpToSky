@@ -32,7 +32,7 @@ public class DragController : MonoBehaviour
         if (player == null)
             return;
 
-        if (player.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+        if (!player.isContactAnything)
             return;
 
         if (PlayerPrefs.GetInt("OnSettingUI") == 1)
