@@ -43,7 +43,7 @@ public class DragController : MonoBehaviour
         Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         // 터치했을 때, UI에 터치했을 때는 반응 안 하게(컷씬 때 게임 실행되는 거 막으려고)
-        if (!EventSystem.current.IsPointerOverGameObject()&&Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
         {
             isDragging = true;
             Managers.Sound.Play("Sound_Charging");

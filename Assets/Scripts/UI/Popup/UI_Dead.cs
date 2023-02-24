@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UI_Dead : UI_Popup
 {
-    enum Buttons
+    enum images
     {
         RestartBtn,
         ReturnBtn,
@@ -28,11 +28,11 @@ public class UI_Dead : UI_Popup
         // Dead Effect
 
 
-        BindButton(typeof(Buttons));
+        BindImage(typeof(images));
         BindText(typeof(Texts));
 
-        GetButton((int)Buttons.RestartBtn).gameObject.BindEvent(ToScoreGameScene);
-        GetButton((int)Buttons.ReturnBtn).gameObject.BindEvent(ToMainScene);
+        GetImage((int)images.RestartBtn).gameObject.BindEvent(ToScoreGameScene);
+        GetImage((int)images.ReturnBtn).gameObject.BindEvent(ToMainScene);
 
         highestScore = GameObject.Find("UI_Game").GetComponent<UI_Game>().highestScore;
         GetText((int)Texts.ScoreText).text = $"Your Score : {highestScore}m";
@@ -70,6 +70,5 @@ public class UI_Dead : UI_Popup
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         Managers.UI.ShowSceneUI<UI_Main>();
-
     }
 }

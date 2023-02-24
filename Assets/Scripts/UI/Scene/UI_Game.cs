@@ -15,7 +15,7 @@ public class UI_Game : UI_Scene
     enum Buttons
     {
         SettingBtn,
-        SpiderManModeBtn,
+        //SpiderManModeBtn,
     }
 
     enum Texts
@@ -60,7 +60,7 @@ public class UI_Game : UI_Scene
         BindImage(typeof(Images));
 
         GetButton((int)Buttons.SettingBtn).gameObject.BindEvent(Setting);
-        GetButton((int)Buttons.SpiderManModeBtn).gameObject.BindEvent(SpiderManMode);
+        //GetButton((int)Buttons.SpiderManModeBtn).gameObject.BindEvent(SpiderManMode);
         #region 골드 불러오기
         if (PlayerPrefs.HasKey("gold"))
             Gold = PlayerPrefs.GetInt("gold");

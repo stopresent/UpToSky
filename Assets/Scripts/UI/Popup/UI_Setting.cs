@@ -116,15 +116,10 @@ public class UI_Setting : UI_Popup
 
     void ToMainScene()
     {
-        Time.timeScale = 1;
-        Debug.Log("메인 메뉴로 돌아옴");
-        Managers.Sound.Clear();
-        Managers.Sound.Play("Sound_CloseUI");
-        Managers.UI.ClosePopupUI(this);
+        BackToGame();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         Managers.UI.ShowSceneUI<UI_Main>();
-
     }
 
 }

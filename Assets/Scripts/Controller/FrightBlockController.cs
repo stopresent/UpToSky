@@ -7,17 +7,19 @@ public class FrightBlockController : MonoBehaviour
 {
     Vector2 pos;
     int vec = 1;
-    float addX = 0.55f;
+    float addX = 0.65f;
+    SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
     {
         Init();
+        sr.flipX = true;
     }
 
     void Init()
     {
-
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,8 @@ public class FrightBlockController : MonoBehaviour
         {
             vec *= -1;
             addX *= -1;
+
+            sr.flipX = sr.flipX ? false : true;
         }
     }
 
