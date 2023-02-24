@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BlockDestroyer : MonoBehaviour
 {
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Block" || 
-            collision.gameObject.tag == "Coin" ||
+            collision.gameObject.tag == "Coin" ||   
             collision.gameObject.tag == "InstantiatedWall")
             Destroy(collision.gameObject);
 

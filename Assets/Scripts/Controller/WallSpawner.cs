@@ -28,7 +28,7 @@ public class WallSpawner : MonoBehaviour
 
     void SetHInterval()
     {
-        HInterval = Random.Range(4.0f, 7.0f);
+        HInterval = Random.Range(7.0f, 14.0f);
     }
 
     void spawnBlock()
