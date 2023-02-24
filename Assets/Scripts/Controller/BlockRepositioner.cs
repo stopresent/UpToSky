@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlockRepositioner : MonoBehaviour
 {
     GameObject nearBlock;
-
+    float radius = 1.2f;
     void Start()
     {
         nearBlock = Utils.FindNearestObject("Block", transform.position);
@@ -13,13 +13,8 @@ public class BlockRepositioner : MonoBehaviour
         if (nearBlock == null)
             return;
 
-        if( Vector3.Distance(transform.position, nearBlock.transform.position) < 1.2f )
-        {
-            Debug.Log(nearBlock.transform.position.ToString());
-            Debug.Log("자리 재지정" + transform.position.ToString() + " 거리 : " + Vector3.Distance(transform.position, nearBlock.transform.position));
-
+        if( Vector3.Distance(transform.position, nearBlock.transform.position) < radius)
             transform.position += transform.position - nearBlock.transform.position;
-        }
 
         if (Mathf.Abs(transform.position.x) > 2)
             transform.position = new Vector3(2, transform.position.y, 0);

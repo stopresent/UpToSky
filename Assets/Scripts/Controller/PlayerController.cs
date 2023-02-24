@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -49,7 +50,21 @@ public class PlayerController : MonoBehaviour
             return;
 
         if(collision.gameObject.name == "BreakableBlock")
-            Destroy(collision.gameObject, 3f);
+        {
+            StartCoroutine(MakeItFall(collision.gameObject));
+        }
 
     }
+
+    IEnumerator MakeItFall(GameObject it)
+    {
+        yield return new WaitForSeconds(3.0f);
+        if (it == null)
+            yield break;
+        it.GetComponent<CapsuleCollider2D>().isTrigger = true;
+        it.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        it.GetComponent<Rigidbody2D>().gravityScale = 1;
+
+    }
+
 }
