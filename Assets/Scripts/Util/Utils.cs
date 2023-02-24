@@ -47,4 +47,23 @@ public class Utils
         return null;
     }
 
+    public static GameObject FindNearestObject(string tag, Vector3 pos)  // Scene에서 가장 가까운 게임오브젝트를 반환한다
+    {
+        GameObject nearestGo = null;
+        float distance = float.MaxValue;
+        GameObject[] Gos = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (GameObject Go in Gos)
+        {
+            float distance2 = Mathf.Abs((Go.transform.position - pos).magnitude);
+            if (Go != null && distance2 < distance)
+            {
+                nearestGo = Go;
+                distance = distance2;
+            }
+        }
+
+        return nearestGo;
+    }
+
 }
