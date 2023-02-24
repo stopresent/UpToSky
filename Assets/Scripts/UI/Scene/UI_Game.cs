@@ -53,7 +53,7 @@ public class UI_Game : UI_Scene
         if (base.Init() == false)
             return false;
 
-        //_player = GameObject.Find("Player").gameObject;
+        // 스킨 착용 확인
 
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));

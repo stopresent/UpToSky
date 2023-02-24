@@ -33,13 +33,13 @@ public class InitSpawner : MonoBehaviour
         {
             if (randRange <= 40)
             {
-                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/SlipBlock");
+                GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/BlackHole");
                 breakableBlock.transform.position = newPos;
 
             }
             else if (randRange <= 100)
             {
-                GameObject block = Managers.Resource.Instantiate("Blocks/BouncyBlock");
+                GameObject block = Managers.Resource.Instantiate("Blocks/BlackHole");
                 block.transform.position = newPos;
             }
         }

@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Collider2D col;
 
+    Define.State _state = Define.State.None;
+    public Define.State State { get { return _state; } set { _state = value; } }
+
     // player의 위치를 가져온다.
     [HideInInspector] public Vector3 pos { get { return transform.position; } }
 
@@ -40,16 +43,20 @@ public class PlayerController : MonoBehaviour
         // 미끄러지는 블럭
         if (collision.gameObject.name == "SlipBlock")
         {
-            rb.AddForce(new Vector2(1.0f, 0.0f), ForceMode2D.Impulse);
             return;
         }
-
 
         // 통통 튀는 블럭
         if (collision.gameObject.name == "BouncyBlock")
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f), ForceMode2D.Impulse);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 3.0f), ForceMode2D.Impulse);
+            State = Define.State.BouncyState;
             return;
+        }
+
+        if (collision.gameObject.name == "BreakableBlock")
+        {
+            StartCoroutine(MakeItFall(collision.gameObject));
         }
 
         if (GetComponent<Rigidbody2D>().velocity.y <= 5)
@@ -60,16 +67,31 @@ public class PlayerController : MonoBehaviour
             
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // StartCoroutine(Boom()); 이렇게 코드를 작성하면 Stop이 안됨
+        // 둘다 string으로 넣어줘야 stop이 가능하다.
+        StartCoroutine("Boom");
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Block")
             return;
 
-        if(collision.gameObject.name == "BreakableBlock")
+        // 블랙홀
+        if (collision.gameObject.name == "BlackHole")
         {
-            StartCoroutine(MakeItFall(collision.gameObject));
+            Vector3 dir = collision.gameObject.transform.position - gameObject.transform.position;
+            Vector3.Normalize(dir);
+            rb.AddForce(dir * 70, ForceMode2D.Force);
+            return;
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        StopCoroutine("Boom");
     }
 
     IEnumerator MakeItFall(GameObject it)
@@ -81,6 +103,13 @@ public class PlayerController : MonoBehaviour
         it.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         it.GetComponent<Rigidbody2D>().gravityScale = 1;
 
+    }
+
+    IEnumerator Boom()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Managers.UI.ShowPopupUI<UI_Dead>();
+        Destroy(GameObject.Find("Player").GetComponent<PlayerController>());
     }
 
 }

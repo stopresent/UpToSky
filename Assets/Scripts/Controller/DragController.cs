@@ -32,7 +32,7 @@ public class DragController : MonoBehaviour
         if (player == null)
             return;
 
-        if (player.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+        if (player.GetComponent<Rigidbody2D>().velocity != Vector2.zero && player.State != Define.State.BouncyState)
             return;
 
         if (PlayerPrefs.GetInt("OnSettingUI") == 1)
@@ -57,6 +57,7 @@ public class DragController : MonoBehaviour
             {
                 isDragging = false;
                 OnDragEnd();
+                player.State = Define.State.None;
             }
         }
         if (isDragging)
