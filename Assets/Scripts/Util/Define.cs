@@ -47,4 +47,11 @@ public class Define
         GalaxyBlues = 1004,
     }
 
+    public enum State
+    {
+        None,
+        BouncyState,
+
+    }
+
 }

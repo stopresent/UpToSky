@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Collider2D col;
 
+    Define.State _state = Define.State.None;
+    public Define.State State { get { return _state; } set { _state = value; } }
+
     // player의 위치를 가져온다.
     [HideInInspector] public Vector3 pos { get { return transform.position; } }
     public bool isContactAnything = false;
@@ -43,14 +46,14 @@ public class PlayerController : MonoBehaviour
         // 미끄러지는 블럭
         if (collision.gameObject.name == "SlipBlock")
         {
-            rb.AddForce(new Vector2(1.0f, 0.0f), ForceMode2D.Impulse);
             return;
         }
 
         // 통통 튀는 블럭
         if (collision.gameObject.name == "BouncyBlock")
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f), ForceMode2D.Impulse);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 3.0f), ForceMode2D.Impulse);
+            State = Define.State.BouncyState;
             return;
         }
 
@@ -64,10 +67,10 @@ public class PlayerController : MonoBehaviour
 
         // 착지
         if (GetComponent<Rigidbody2D>().velocity.y <= 5)
-    {
-        Managers.Sound.Play("Sound_Landing");
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-    }
+        {
+            Managers.Sound.Play("Sound_Landing");
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
 
     }
 
@@ -81,7 +84,34 @@ public class PlayerController : MonoBehaviour
         // 열기구랑 닿았다가 떨어지면
         if (collision.gameObject.name == "AirBalloonBlock")
             StartCoroutine(ItWasAirBalloon(collision.gameObject));
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // StartCoroutine(Boom()); 이렇게 코드를 작성하면 Stop이 안됨
+        // 둘다 string으로 넣어줘야 stop이 가능하다.
+        StartCoroutine("Boom");
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag != "Block")
+            return;
+
+        // 블랙홀
+        if (collision.gameObject.name == "BlackHole")
+        {
+            Vector3 dir = collision.gameObject.transform.position - gameObject.transform.position;
+            Vector3.Normalize(dir);
+            rb.AddForce(dir * 70, ForceMode2D.Force);
+            return;
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        StopCoroutine("Boom");
     }
 
     IEnumerator MakeItFall(GameObject it)
@@ -108,7 +138,13 @@ public class PlayerController : MonoBehaviour
         Destroy(it.GetComponent<CapsuleCollider2D>());
         yield return new WaitForSeconds(4.0f);
         Destroy(it);
+    }
 
+    IEnumerator Boom()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Managers.UI.ShowPopupUI<UI_Dead>();
+        Destroy(GameObject.Find("Player").GetComponent<PlayerController>());
     }
 
 }
