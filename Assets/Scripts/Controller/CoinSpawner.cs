@@ -22,7 +22,7 @@ public class CoinSpawner : MonoBehaviour
         if(Random.Range(0, 100) < chance)
         {
             GameObject coin = Managers.Resource.Instantiate("Coin");
-            coin.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            coin.transform.position = transform.position + new Vector3(0, 0.7f, 0);
         }
     }
 }

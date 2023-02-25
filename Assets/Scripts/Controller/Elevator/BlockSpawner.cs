@@ -42,25 +42,19 @@ public class BlockSpawner : MonoBehaviour
     {
         int randRange = Random.Range(1, 100);
         string path = "";
-        switch (randRange)
-        {
-            default:
-                break;
-        }
 
-        // 더 좋은 코드가 없을까..?
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
             if (PlayerY < (int)Define.Height.City) path = "Blocks/CityBlock";
-            else if (PlayerY < (int)Define.Height.Mountain && randRange <= 40) path = "Blocks/SlipBlock";
+            else if (PlayerY < (int)Define.Height.Mountain && randRange <= 35) path = "Blocks/SlipBlock";
             else if (PlayerY < (int)Define.Height.Mountain && randRange <= 100) path = "Blocks/MountainBlock";
-            else if (PlayerY < (int)Define.Height.SkyWorld && randRange <= 40) path = "Blocks/FlightBlock";
+            else if (PlayerY < (int)Define.Height.SkyWorld && randRange <= 30) path = "Blocks/FlightBlock";
             else if (PlayerY < (int)Define.Height.SkyWorld && randRange <= 100) path = "Blocks/SkyWorldBlock";
-            else if (PlayerY < (int)Define.Height.Stratosphere && randRange <= 40) path = "Blocks/AirBalloonBlock";
+            else if (PlayerY < (int)Define.Height.Stratosphere && randRange <= 20) path = "Blocks/AirBalloonBlock";
             else if (PlayerY < (int)Define.Height.Stratosphere && randRange <= 100) path = "Blocks/StratosphereBlock";
-            else if (PlayerY < (int)Define.Height.Thermosphere && randRange <= 40) path = "Blocks/AuroraBlock";
+            else if (PlayerY < (int)Define.Height.Thermosphere && randRange <= 30) path = "Blocks/AuroraBlock";
             else if (PlayerY < (int)Define.Height.Thermosphere && randRange <= 100) path = "Blocks/ThermosphereBlock";
-            else if (PlayerY <= (int)Define.Height.GalaxyBlues && randRange <= 40) path = "Blocks/BlackHole";
+            else if (PlayerY <= (int)Define.Height.GalaxyBlues && randRange <= 10) path = "Blocks/BlackHole";
             else path = "Blocks/SpaceBlock";
 
             GameObject Block = Managers.Resource.Instantiate(path);
@@ -71,7 +65,7 @@ public class BlockSpawner : MonoBehaviour
         {
 
             // 스코어 모드에서 블럭 생성
-            if (randRange <= 40)
+            if (randRange <= 10)
             {
                 GameObject breakableBlock = Managers.Resource.Instantiate("Blocks/BlackHole");
                 breakableBlock.transform.position = newPos;

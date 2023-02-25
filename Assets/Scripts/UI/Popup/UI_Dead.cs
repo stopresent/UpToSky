@@ -12,8 +12,6 @@ public class UI_Dead : UI_Popup
 
     enum Texts
     {
-        RestartText,
-        ReturnText,
         ScoreText,
     }
 

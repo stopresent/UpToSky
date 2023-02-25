@@ -13,7 +13,7 @@ public class UI_Main : UI_Scene
         GameStartBtn,
         QuitGameBtn,
         ExplanBtn,
-        CollectionBtn,
+        //CollectionBtn,
         DeveloperBtn,
     }
 

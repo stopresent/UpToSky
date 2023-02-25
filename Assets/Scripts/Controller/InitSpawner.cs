@@ -38,17 +38,9 @@ public class InitSpawner : MonoBehaviour
         // 스코어 모드에서 초기 블럭 생성
         if (Managers.Game.Mode == Define.Mode.ScoreMode)
         {
-            if (randRange <= 40)
-            {
-                GameObject Block = Managers.Resource.Instantiate("Blocks/BlackHole");
-                Block.transform.position = newPos;
+            GameObject block = Managers.Resource.Instantiate("Blocks/SpaceBlock");
+            block.transform.position = newPos;
 
-            }
-            else if (randRange <= 100)
-            {
-                GameObject block = Managers.Resource.Instantiate("Blocks/SpaceBlock");
-                block.transform.position = newPos;
-            }
         }
     }
 

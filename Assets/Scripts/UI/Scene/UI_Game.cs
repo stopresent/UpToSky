@@ -153,7 +153,7 @@ public class UI_Game : UI_Scene
 
     void RefreshUI()
     {
-        GetText((int)Texts.ScoreText).text = String.Format("{0:#,###} m", $"{Score}");
+        GetText((int)Texts.ScoreText).text = String.Format("{0:#,###}", $"{Score}");
         GetText((int)Texts.GoldText).text = String.Format("{0:#,##0}", Gold);
     }
 
