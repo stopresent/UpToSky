@@ -22,6 +22,7 @@ public class UI_Dead : UI_Popup
         if (base.Init() == false)
             return false;
 
+
         // TODO
         // Dead Effect
 
@@ -49,11 +50,24 @@ public class UI_Dead : UI_Popup
 
     void ToScoreGameScene()
     {
+
         // 게임 시작
         // 스토리 모드에 맞게 게임씬이 바뀌어야 함
         Managers.Sound.Clear();
         Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
+
+        #region
+        // 전면 광고 추가
+        Managers.Sound.Clear();
+
+        Managers.Ads.LoadInterstitialAd();
+        Managers.Ads.ShowAd();
+
+        // TODO
+        // 꺼진거 확인
+
+        #endregion
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         Managers.UI.ShowSceneUI<UI_Game>();

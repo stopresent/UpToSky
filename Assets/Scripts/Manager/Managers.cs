@@ -12,6 +12,7 @@ public class Managers : MonoBehaviour
     public static Managers Instance { get { return s_instance; } }
 
     private static GameManagerEx s_gameManager = new GameManagerEx();
+    private static GoogleAdsManager s_adsmanager = new GoogleAdsManager();
     private static DataManager s_dataManager = new DataManager();
     private static UIManager s_uiManager = new UIManager();
     private static ResourceManager s_resourceManager = new ResourceManager();
@@ -19,6 +20,7 @@ public class Managers : MonoBehaviour
     private static CutsceneManager s_cutsceneManger = new CutsceneManager();
 
     public static GameManagerEx Game { get { Init(); return s_gameManager; } }
+    public static GoogleAdsManager Ads { get { Init(); return s_adsmanager; } }
     public static DataManager Data { get { Init(); return s_dataManager; } }
     public static UIManager UI { get { Init(); return s_uiManager; } }
     public static ResourceManager Resource { get { Init(); return s_resourceManager; } }
