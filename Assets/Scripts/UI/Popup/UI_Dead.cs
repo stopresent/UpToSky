@@ -57,18 +57,6 @@ public class UI_Dead : UI_Popup
         Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
 
-        #region
-        // 전면 광고 추가
-        Managers.Sound.Clear();
-
-        Managers.Ads.LoadInterstitialAd();
-        Managers.Ads.ShowAd();
-
-        // TODO
-        // 꺼진거 확인
-
-        #endregion
-
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         Managers.UI.ShowSceneUI<UI_Game>();
     }
