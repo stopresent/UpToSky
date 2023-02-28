@@ -9,7 +9,7 @@ public class GoogleAdsManager : MonoBehaviour
 {
 
 #if UNITY_ANDROID
-    private string _adUnitId = "ca-app-pub-1536666317304059/4180812181";
+    private string _adUnitId = "ca-app-pub-3940256099942544/1033173712";
 #elif UNITY_IPHONE
   private string _adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -77,6 +77,7 @@ public class GoogleAdsManager : MonoBehaviour
     /// <summary>
     /// Shows the interstitial ad.
     /// </summary>
+
     public void ShowAd()
     {
         if (interstitialAd != null && interstitialAd.CanShowAd())

@@ -6,15 +6,15 @@ public class BlockRepositioner : MonoBehaviour
 {
     GameObject nearBlock;
     GameObject nearWall;
-    float radius = 1.2f;
-    float Wradius = 2.6f;
+    float radius = 0.8f;
+    float Wradius = 1.5f;
     float bound;
 
     void Start()
     {
         nearBlock = Utils.FindNearestObject("Block", transform.position);
         nearWall = Utils.FindNearestObject("InstantiatedWall", transform.position);
-        bound = GameObject.Find("BlockSpawner").GetComponent<BlockSpawner>().max.x;
+        bound = 1.8f;
 
         if (nearBlock != null)
         {
@@ -22,7 +22,11 @@ public class BlockRepositioner : MonoBehaviour
                 transform.position += transform.position - nearBlock.transform.position;
 
             if (Mathf.Abs(transform.position.x) > bound)
-                transform.position = new Vector3(transform.position.x > 0 ? bound : -bound, transform.position.y, 0);
+            {
+                Debug.Log("!!");
+                float x = transform.position.x > 0 ? bound : (bound * (-1));
+                transform.position = new Vector3(x, transform.position.y, 0);
+            }
         }
 
         if (nearWall != null)
@@ -31,7 +35,11 @@ public class BlockRepositioner : MonoBehaviour
                 transform.position += transform.position - nearWall.transform.position;
 
             if (Mathf.Abs(transform.position.x) > bound)
-                transform.position = new Vector3(transform.position.x > 0 ? bound : -bound, transform.position.y, 0);
+            {
+                float x = transform.position.x > 0 ? bound : (bound * (-1));
+                transform.position = new Vector3(x, transform.position.y, 0);
+            }
+                
         }
 
     }
