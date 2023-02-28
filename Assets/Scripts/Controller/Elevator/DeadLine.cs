@@ -11,20 +11,10 @@ public class DeadLine : MonoBehaviour
         if (collision.gameObject.name == "Player" && playerAlive == true)
         {
             Destroy(GameObject.Find("Player").GetComponent<PlayerController>());
+            Managers.UI.ShowPopupUI<UI_Dead>();
             playerAlive = false;
 
-            #region
-            // 전면 광고 추가
-            Managers.Sound.Clear();
 
-            Managers.Ads.LoadInterstitialAd();
-            Managers.Ads.ShowAd();
-            //Managers.Ads.gameObject.GetComponent<ButtonBehaviour>().gameObject.GetComponent<Canvas>().sortingOrder = 20;
-
-            // TODO
-            // 꺼진거 확인
-
-            #endregion
         }
     }
 }

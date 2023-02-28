@@ -119,7 +119,11 @@ public class GoogleAdsManager : MonoBehaviour
         {
             Debug.Log("Interstitial ad full screen content closed.");
             interstitialAd.Destroy();
-            Managers.UI.ShowPopupUI<UI_Dead>();
+            // TODO
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            Managers.UI.ShowSceneUI<UI_Game>();
+
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
