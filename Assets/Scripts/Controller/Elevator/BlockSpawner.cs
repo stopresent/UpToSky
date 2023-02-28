@@ -7,9 +7,9 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class BlockSpawner : MonoBehaviour
 {
-    Vector3 min;
-    Vector3 max;
-    Vector3 newPos;
+    public Vector3 min;
+    public Vector3 max;
+    public Vector3 newPos;
     public bool Spawn = false;
     public int PlayerY;
 
