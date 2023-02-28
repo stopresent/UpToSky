@@ -25,6 +25,7 @@ public class GoogleAdsManager : MonoBehaviour
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             // This callback is called once the MobileAds SDK is initialized.
+            LoadInterstitialAd();
         });
     }
     // 전면 광고 로드
@@ -66,6 +67,10 @@ public class GoogleAdsManager : MonoBehaviour
 
                 interstitialAd = ad;
             });
+
+        RegisterEventHandlers(interstitialAd);
+        RegisterReloadHandler(interstitialAd);
+
     }
 
     // 전면 광고 표시
@@ -119,14 +124,17 @@ public class GoogleAdsManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
             Managers.UI.ShowSceneUI<UI_Game>();
 
-            RegisterReloadHandler(interstitialAd);
-
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
             Debug.LogError("Interstitial ad failed to open full screen content " +
                            "with error : " + error);
+
+            Debug.Log("To Game Scene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            Managers.UI.ShowSceneUI<UI_Game>();
+
         };
     }
 

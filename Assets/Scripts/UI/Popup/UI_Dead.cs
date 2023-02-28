@@ -61,7 +61,6 @@ public class UI_Dead : UI_Popup
         // 전면 광고 추가
         Managers.Sound.Clear();
 
-        Managers.Ads.LoadInterstitialAd();
         Managers.Ads.ShowAd();
         //Managers.Ads.gameObject.GetComponent<ButtonBehaviour>().gameObject.GetComponent<Canvas>().sortingOrder = 20;
 
