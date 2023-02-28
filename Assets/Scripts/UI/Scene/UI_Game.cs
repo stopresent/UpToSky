@@ -6,7 +6,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using static Define;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class UI_Game : UI_Scene
 {
