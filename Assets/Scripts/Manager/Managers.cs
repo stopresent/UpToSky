@@ -45,6 +45,7 @@ public class Managers : MonoBehaviour
 
             s_resourceManager.Init();
             s_soundManager.Init();
+            s_adsmanager.Init();
 
             Application.targetFrameRate = 60;
         }

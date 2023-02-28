@@ -9,7 +9,7 @@ public class GoogleAdsManager : MonoBehaviour
 {
 
 #if UNITY_ANDROID
-    private string _adUnitId = "ca-app-pub-3940256099942544/1033173712";
+    private string _adUnitId = "ca-app-pub-1536666317304059/4180812181";
 #elif UNITY_IPHONE
   private string _adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -19,17 +19,14 @@ public class GoogleAdsManager : MonoBehaviour
     private InterstitialAd interstitialAd;
     public InterstitialAd InterstitialAd { get { return interstitialAd; } }
 
-    public void Start()
+    public void Init()
     {
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             // This callback is called once the MobileAds SDK is initialized.
         });
-        
-
     }
-
     // 전면 광고 로드
     // These ad units are configured to always serve test ads.
 
@@ -50,7 +47,7 @@ public class GoogleAdsManager : MonoBehaviour
         Debug.Log("Loading the interstitial ad.");
 
         // create our request used to load the ad.
-        var adRequest = new AdRequest.Builder().AddKeyword("unity-admob-sample").Build();
+        var adRequest = new AdRequest.Builder().Build();
 
         // send the request to load the ad.
         InterstitialAd.Load(_adUnitId, adRequest,
@@ -86,8 +83,6 @@ public class GoogleAdsManager : MonoBehaviour
         {
             Debug.LogError("Interstitial ad is not ready yet.");
         }
-        RegisterEventHandlers(interstitialAd);
-        RegisterReloadHandler(interstitialAd);
     }
 
     private void RegisterEventHandlers(InterstitialAd ad)
@@ -118,11 +113,13 @@ public class GoogleAdsManager : MonoBehaviour
         ad.OnAdFullScreenContentClosed += () =>
         {
             Debug.Log("Interstitial ad full screen content closed.");
-            interstitialAd.Destroy();
+            //interstitialAd.Destroy();
             // TODO
-
+            Debug.Log("To Game Scene");
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
             Managers.UI.ShowSceneUI<UI_Game>();
+
+            RegisterReloadHandler(interstitialAd);
 
         };
         // Raised when the ad failed to open full screen content.
