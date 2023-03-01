@@ -82,9 +82,9 @@ public class UI_Game : UI_Scene
     private void Update()
     {
         CutScene(); // 마우스 클릭 때마다 컷씬 변경
-        
+
         PlayTime += Time.deltaTime;
-        Score = (int)GameObject.Find("Player").transform.position.y;
+        Score = (int)GameObject.Find("Player").transform.position.y * 6;
         if (highestScore < Score)
             highestScore = Score;
 
@@ -101,6 +101,8 @@ public class UI_Game : UI_Scene
                 // 에베레스트 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Mountain")
                     Managers.Sound.Play("BGM/Sound_Mountain", Sound.Bgm);
+
+                Managers.Resource.Instantiate("BG/Bg2");
             }
             else if (Score < (int)Define.Height.SkyWorld)
             {
@@ -120,7 +122,7 @@ public class UI_Game : UI_Scene
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Thermosphere")
                     Managers.Sound.Play("BGM/Sound_Thermosphere", Sound.Bgm);
             }
-            else if(Score <= (int)Define.Height.GalaxyBlues)
+            else if (Score <= (int)Define.Height.GalaxyBlues)
             {
                 // 우주 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_GalaxyBlues")
@@ -199,10 +201,15 @@ public class UI_Game : UI_Scene
             Managers.Sound.GetCurrent().volume = 0.0f;
         }
 
-        Managers.Resource.Instantiate("StoryModeBG");
+        for (int i = 1; i < 10; i++)
+        {
+            GameObject Bg = Managers.Resource.Instantiate($"Bg{i}");
 
-        //GameObject.Find("Test_BG").gameObject.GetComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Sprites/BG/StoryModeBGImage");
-        // 배경은 높이에 따라 달라지므로 높이를 측정하여 특정 높이가 됐을 때 브금 변경?
+            float BgY = Bg.GetComponent<SpriteRenderer>().bounds.max.y;
+            Bg.transform.position = new Vector3(0, (2 * (i - 1) * BgY + BgY), 0);
+        }
+
+
     }
 
     void ScoreMode()
@@ -228,7 +235,7 @@ public class UI_Game : UI_Scene
     {
         Managers.UI.ShowPopupUI<UI_Setting>();
     }
-    
+
     void SpiderManMode()
     {
         GameObject.Find("Player").AddComponent<SpiderManMode>();

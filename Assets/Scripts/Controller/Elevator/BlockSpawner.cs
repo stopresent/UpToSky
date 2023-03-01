@@ -23,7 +23,7 @@ public class BlockSpawner : MonoBehaviour
         if(Spawn == true)
             spawnBlock();
 
-        PlayerY = (int)GameObject.Find("Player").transform.position.y;
+        PlayerY = (int)GameObject.Find("Player").transform.position.y * 6;
 
     }
 
