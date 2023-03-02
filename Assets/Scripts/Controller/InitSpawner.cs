@@ -31,7 +31,7 @@ public class InitSpawner : MonoBehaviour
         // 스토리 모드에서 초기 블럭 생성
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            GameObject Block = Managers.Resource.Instantiate("Blocks/CityBlock");
+            GameObject Block = Managers.Resource.Instantiate("Blocks/MountainBlock");
             Block.transform.position = newPos;
         }
 

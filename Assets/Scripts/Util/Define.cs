@@ -39,11 +39,10 @@ public class Define
 
     public enum Height
     {
-        City = 50,
-        Mountain = 150,
-        SkyWorld = 250,
-        Stratosphere = 400,
-        Thermosphere = 650,
+        Mountain = 100,
+        SkyWorld = 300,
+        Stratosphere = 500,
+        Thermosphere = 700,
         GalaxyBlues = 1004,
     }
 

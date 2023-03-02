@@ -23,7 +23,7 @@ public class BlockSpawner : MonoBehaviour
         if(Spawn == true)
             spawnBlock();
 
-        PlayerY = (int)GameObject.Find("Player").transform.position.y * 6;
+        PlayerY = (int)GameObject.Find("Player").transform.position.y * 3;
 
     }
 
@@ -45,12 +45,11 @@ public class BlockSpawner : MonoBehaviour
 
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            if (PlayerY < (int)Define.Height.City) path = "Blocks/CityBlock";
-            else if (PlayerY < (int)Define.Height.Mountain && randRange <= 35) path = "Blocks/SlipBlock";
+            if (PlayerY < (int)Define.Height.Mountain && randRange <= 30) path = "Blocks/SlipBlock";
             else if (PlayerY < (int)Define.Height.Mountain && randRange <= 100) path = "Blocks/MountainBlock";
             else if (PlayerY < (int)Define.Height.SkyWorld && randRange <= 30) path = "Blocks/FlightBlock";
             else if (PlayerY < (int)Define.Height.SkyWorld && randRange <= 100) path = "Blocks/SkyWorldBlock";
-            else if (PlayerY < (int)Define.Height.Stratosphere && randRange <= 20) path = "Blocks/AirBalloonBlock";
+            else if (PlayerY < (int)Define.Height.Stratosphere && randRange <= 15) path = "Blocks/AirBalloonBlock";
             else if (PlayerY < (int)Define.Height.Stratosphere && randRange <= 100) path = "Blocks/StratosphereBlock";
             else if (PlayerY < (int)Define.Height.Thermosphere && randRange <= 30) path = "Blocks/AuroraBlock";
             else if (PlayerY < (int)Define.Height.Thermosphere && randRange <= 100) path = "Blocks/ThermosphereBlock";

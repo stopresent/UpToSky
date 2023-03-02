@@ -84,25 +84,17 @@ public class UI_Game : UI_Scene
         CutScene(); // 마우스 클릭 때마다 컷씬 변경
 
         PlayTime += Time.deltaTime;
-        Score = (int)GameObject.Find("Player").transform.position.y * 6;
+        Score = (int)GameObject.Find("Player").transform.position.y * 3;
         if (highestScore < Score)
             highestScore = Score;
 
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
-            if (Score < (int)Define.Height.City)
-            {
-                // 도시브금
-                if (Managers.Sound.GetCurrent().clip == null || Managers.Sound.GetCurrent().clip.name != "Sound_City")
-                    Managers.Sound.Play("BGM/Sound_City", Sound.Bgm);
-            }
-            else if (Score < (int)Define.Height.Mountain)
+            if (Score < (int)Define.Height.Mountain)
             {
                 // 에베레스트 브금
-                if (Managers.Sound.GetCurrent().clip.name != "Sound_Mountain")
+                if (Managers.Sound.GetCurrent().clip == null || Managers.Sound.GetCurrent().clip.name != "Sound_Mountain")
                     Managers.Sound.Play("BGM/Sound_Mountain", Sound.Bgm);
-
-                Managers.Resource.Instantiate("BG/Bg2");
             }
             else if (Score < (int)Define.Height.SkyWorld)
             {
@@ -201,7 +193,7 @@ public class UI_Game : UI_Scene
             Managers.Sound.GetCurrent().volume = 0.0f;
         }
 
-        for (int i = 1; i < 10; i++)
+        for (int i = 1; i < 11; i++)
         {
             GameObject Bg = Managers.Resource.Instantiate($"Bg{i}");
 
