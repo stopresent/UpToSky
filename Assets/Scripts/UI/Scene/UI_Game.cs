@@ -206,9 +206,9 @@ public class UI_Game : UI_Scene
 
     void ScoreMode()
     {
-        // TODO 무한 배경 OR 우주니까 배경 고정?
+        // 무한 배경 OR 우주니까 배경 고정
         Managers.Sound.Clear();
-        Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm); // TODO 스코어 모드 전용 브금으로 교체
+        Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm); // 스코어 모드 전용 브금으로 교체
         if (PlayerPrefs.HasKey("Soundness"))
             Managers.Sound.GetCurrent().volume = PlayerPrefs.GetFloat("Soundness");
         if (PlayerPrefs.GetInt("IsMute") == 1)

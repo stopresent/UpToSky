@@ -38,6 +38,11 @@ public class FrightBlockController : MonoBehaviour
         if (hit.collider == null)
             return;
 
+        if (hit.collider.tag == "Player")
+        {
+            hit.transform.position = hit.transform.position + new Vector3(1 * vec, 0, 0) * 0.01f;
+        }
+
         if (hit.collider.tag == "Block" || hit.collider.tag == "InstantiatedWall" || hit.collider.tag == "Wall")
         {
             vec *= -1;
