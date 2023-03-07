@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor.Experimental;
 using UnityEngine;
 
@@ -23,7 +25,7 @@ public class FrightBlockController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         moving();
     }
@@ -38,11 +40,6 @@ public class FrightBlockController : MonoBehaviour
         if (hit.collider == null)
             return;
 
-        if (hit.collider.tag == "Player")
-        {
-            hit.transform.position = hit.transform.position + new Vector3(1 * vec, 0, 0) * 0.01f;
-        }
-
         if (hit.collider.tag == "Block" || hit.collider.tag == "InstantiatedWall" || hit.collider.tag == "Wall")
         {
             vec *= -1;
@@ -50,6 +47,15 @@ public class FrightBlockController : MonoBehaviour
 
             sr.flipX = sr.flipX ? false : true;
         }
+        
     }
 
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.tag != "Player")
+            return;
+
+        collision.transform.position = collision.transform.position + new Vector3(1 * vec, 0, 0) * 0.01f;
+        
+    }
 }
