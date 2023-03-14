@@ -42,6 +42,8 @@ public class UI_Game : UI_Scene
     public int GoldIncomeHInterval = 10; // 매 10미터마다 골드를 받는다
     public float PlayTime = 0.0f;
 
+    Animator anim;
+
     private void Start()
     {
         Init();
@@ -53,6 +55,8 @@ public class UI_Game : UI_Scene
             return false;
 
         // 스킨 착용 확인
+
+        anim = GameObject.Find("Player").GetComponent<Animator>();
 
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
@@ -79,12 +83,28 @@ public class UI_Game : UI_Scene
         return true;
     }
 
+
+
     private void Update()
     {
         CutScene(); // 마우스 클릭 때마다 컷씬 변경
 
+        #region Anim
+        // 애니메이션
+
+        if (GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y > 0.1) anim.Play("JumpUp");
+        else if (GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y < -0.1) anim.Play("JumpDown");
+        else anim.Play("IDLE");
+
+        if (GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.x < -0.1) GameObject.Find("Player").GetComponent<SpriteRenderer>().flipX = true;
+        else if (GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.x > 0.1) GameObject.Find("Player").GetComponent<SpriteRenderer>().flipX = false;
+
+        #endregion
+
         PlayTime += Time.deltaTime;
         Score = (int)GameObject.Find("Player").transform.position.y * 3;
+
+
         if (highestScore < Score)
             highestScore = Score;
 
@@ -206,7 +226,6 @@ public class UI_Game : UI_Scene
 
     void ScoreMode()
     {
-        // 무한 배경 OR 우주니까 배경 고정
         Managers.Sound.Clear();
         Managers.Sound.Play("BGM/Sound_GalaxyBlues", Sound.Bgm); // 스코어 모드 전용 브금으로 교체
         if (PlayerPrefs.HasKey("Soundness"))
@@ -217,6 +236,7 @@ public class UI_Game : UI_Scene
             Managers.Sound.GetCurrent().volume = 0.0f;
         }
 
+        // 무한 배경 OR 우주니까 배경 고정
         GameObject scoreModeBG = Managers.Resource.Instantiate("ScoreModeBG");
         GameObject elavator = GameObject.Find("Elevator");
         if (elavator != null)

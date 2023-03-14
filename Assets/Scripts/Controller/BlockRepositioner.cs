@@ -6,8 +6,7 @@ public class BlockRepositioner : MonoBehaviour
 {
     GameObject nearBlock;
     GameObject nearWall;
-    float radius = 1.0f;
-    //float radius = 0.8f;
+    float radius = 0.8f;
     float Wradius = 1.5f;
     float bound;
 
