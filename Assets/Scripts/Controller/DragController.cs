@@ -83,7 +83,7 @@ public class DragController : MonoBehaviour
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
         force.x = distance * direction.x * PushForce;
-        force.y = Mathf.Min(distance * direction.y * PushForce, 30);
+        force.y = Mathf.Min(distance * direction.y * PushForce, 15);
 
         trajectory.UpdateDots(player.pos, force);
     }
