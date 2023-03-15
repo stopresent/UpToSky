@@ -36,7 +36,7 @@ public class UI_Game : UI_Scene
     public int highestScore;
     public int Score;
     public int PrevBlockSpawnH;
-    public int BlockSpawnHInterval = 2; // 매 2미터마다 블록이 스폰된다
+    public int BlockSpawnHInterval = 5; // 매 2미터마다 블록이 스폰된다
     public int Gold;
     public int PrevIncomeH = 0;
     public int GoldIncomeHInterval = 10; // 매 10미터마다 골드를 받는다
@@ -55,8 +55,8 @@ public class UI_Game : UI_Scene
             return false;
 
         // 스킨 착용 확인
-
-        anim = GameObject.Find("Player").GetComponent<Animator>();
+        if (GameObject.Find("Player") != null)
+            anim = GameObject.Find("Player").GetComponent<Animator>();
 
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));

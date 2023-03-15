@@ -62,10 +62,14 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ItsAirBalloon(collision.gameObject));
 
         // ÂøÁö
-        if (GetComponent<Rigidbody2D>().velocity.y <= 5 && collision.gameObject.tag != "Ground")
+        if (GetComponent<Rigidbody2D>().velocity.y < 0 && collision.gameObject.tag != "Ground")
         {
             Managers.Sound.Play("Sound_Landing");
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
+        else if (GetComponent<Rigidbody2D>().velocity.y >= 0 && collision.gameObject.tag != "Ground")
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
         }
 
     }
