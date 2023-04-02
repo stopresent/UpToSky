@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class PlayerController2 : MonoBehaviour
 {
-    Vector3 playerVector;
     Rigidbody2D _rb;
     LineRenderer _lr;
+
+    Vector2 startPoint;
+    Vector2 endPoint;
+    float distance;
+    Vector2 force;
+    Vector2 direction;
+    float PushForce = 50f;
+
     public Collider2D _col;
     Define.State _state = Define.State.None;
     public Define.State State { get { return _state; } set { _state = value; } }
@@ -23,29 +33,31 @@ public class PlayerController2 : MonoBehaviour
 
     private void OnMouseDown()
     {
-        CaculateThrowVector();
-        SetArrow();
+        startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //CaculateThrowVector();
         PathController.StartVisualizingPath(gameObject);
     }
 
     private void OnMouseDrag()
     {
+        endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CaculateThrowVector();
         SetArrow();
-        PathController.VisualizePath(gameObject, playerVector);
+        PathController.VisualizePath(gameObject, force);
     }
 
     void CaculateThrowVector()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 distance = mousePos - (Vector2)this.GetComponent<CircleCollider2D>().transform.position;
-        playerVector = -distance.normalized * 500;
+        distance = Vector2.Distance(startPoint, endPoint);
+        direction = (startPoint - endPoint).normalized;
+        force.x = distance * direction.x * PushForce;
+        force.y = distance * direction.y * PushForce * 7;
     }
 
     void SetArrow()
     {
         _lr.positionCount = 1;
-        _lr.SetPosition(0, playerVector.normalized);
+        _lr.SetPosition(0, force);
         _lr.enabled= true;
     }
 
@@ -63,7 +75,7 @@ public class PlayerController2 : MonoBehaviour
 
     void Throw()
     {
-        _rb.AddForce(playerVector);
+        _rb.AddForce(force);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
