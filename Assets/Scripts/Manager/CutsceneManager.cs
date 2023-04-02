@@ -26,6 +26,17 @@ public class CutsceneManager : MonoBehaviour
         loadScenes.Add("Cut#1", LoadSceneMode.Additive);
         loadScenes.Add("Cut#2", LoadSceneMode.Additive);
         loadScenes.Add("Cut#3", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#4", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#5", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#6", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#7", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#8", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#9", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#10", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#11", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#12", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#13", LoadSceneMode.Additive);
+        loadScenes.Add("Cut#14", LoadSceneMode.Additive);
     }
 
     // µñ¼Å³Ê¸®¿¡ ÀÖ´Â ÄÆ¾ÀÀ» load
@@ -44,6 +55,18 @@ public class CutsceneManager : MonoBehaviour
         SceneManager.UnloadSceneAsync("Cut#1");
         SceneManager.UnloadSceneAsync("Cut#2");
         SceneManager.UnloadSceneAsync("Cut#3");
+        SceneManager.UnloadSceneAsync("Cut#4");
+        SceneManager.UnloadSceneAsync("Cut#5");
+        SceneManager.UnloadSceneAsync("Cut#6");
+        SceneManager.UnloadSceneAsync("Cut#7");
+        SceneManager.UnloadSceneAsync("Cut#8");
+        SceneManager.UnloadSceneAsync("Cut#9");
+        SceneManager.UnloadSceneAsync("Cut#10");
+        SceneManager.UnloadSceneAsync("Cut#11");
+        SceneManager.UnloadSceneAsync("Cut#12");
+        SceneManager.UnloadSceneAsync("Cut#13");
+        SceneManager.UnloadSceneAsync("Cut#14");
+
         SceneNumber = 0;
         return;
     }

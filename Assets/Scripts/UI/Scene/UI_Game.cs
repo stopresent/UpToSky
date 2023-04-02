@@ -177,7 +177,7 @@ public class UI_Game : UI_Scene
         if (Managers.Cutscene.cutFinished == false && Managers.Game.Mode == Define.Mode.StoryMode)
         {
             // 마지막 컷씬이 끝나면 모든 컷씬 삭제
-            if (Managers.Cutscene.SceneNumber == 3 && Input.GetMouseButtonDown(0))
+            if (Managers.Cutscene.SceneNumber == 14 && Input.GetMouseButtonDown(0))
                 Managers.Cutscene.DistroyCutscene(); // 삭제
             // 클릭했을 때 다음 씬으로
             else if (Input.GetMouseButtonDown(0))

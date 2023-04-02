@@ -9,14 +9,47 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: f6a3e38dbc9c44c42b0b971588cf8c8e
   - enabled: 1
-    path: Assets/Scenes/Cut#3.unity
-    guid: 38d9f1c6f808a544b946ba99bfd5ce62
+    path: Assets/Scenes/Cut#1.unity
+    guid: a41d462d4deb07640a97f84023000b8c
   - enabled: 1
     path: Assets/Scenes/Cut#2.unity
     guid: 6b7ddabbf0a9f694a83c751a6084fcfe
   - enabled: 1
-    path: Assets/Scenes/Cut#1.unity
-    guid: a41d462d4deb07640a97f84023000b8c
+    path: Assets/Scenes/Cut#3.unity
+    guid: 38d9f1c6f808a544b946ba99bfd5ce62
+  - enabled: 1
+    path: Assets/Scenes/Cut#4.unity
+    guid: c6e2755bc2017b54a8878b5eb962edbb
+  - enabled: 1
+    path: Assets/Scenes/Cut#5.unity
+    guid: 60b314ddbd72e0246b4f1d8f5b909316
+  - enabled: 1
+    path: Assets/Scenes/Cut#6.unity
+    guid: bab58ba4b51053547a937d1927d9a172
+  - enabled: 1
+    path: Assets/Scenes/Cut#7.unity
+    guid: 31e1e9fb83d6c1c479b69931a9e92880
+  - enabled: 1
+    path: Assets/Scenes/Cut#8.unity
+    guid: b0e1be9acc0ff794d9ae7c3c65f594f9
+  - enabled: 1
+    path: Assets/Scenes/Cut#9.unity
+    guid: dc6fb77e08888f846b81dfe825c99aa8
+  - enabled: 1
+    path: Assets/Scenes/Cut#10.unity
+    guid: 2d32e3d1b821c5c47b5adabe4d98c326
+  - enabled: 1
+    path: Assets/Scenes/Cut#11.unity
+    guid: f8429dd930e7bb741868f09ecdebf8ca
+  - enabled: 1
+    path: Assets/Scenes/Cut#12.unity
+    guid: b3b8e9391fe00224389833d90eb5fa09
+  - enabled: 1
+    path: Assets/Scenes/Cut#13.unity
+    guid: b64491c4b83e18b44b92484672dafdfd
+  - enabled: 1
+    path: Assets/Scenes/Cut#14.unity
+    guid: 1d42fc24839b57e46bd9ad30c8112924
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: cc6024e831c0e8d44941260253b8da9b

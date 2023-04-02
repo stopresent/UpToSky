@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 1678739704}
   - component: {fileID: 1678739703}
   m_Layer: 5
-  m_Name: Cut#3
+  m_Name: Cut#7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 587c2d25f22df9c44b83f38c328c31b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5543a024262dbd648a4cb1eea2039e34, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
