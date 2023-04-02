@@ -196,7 +196,7 @@ public class UI_Game : UI_Scene
             GameObject Bg = Managers.Resource.Instantiate($"Bg{i}");
 
             float BgY = Bg.GetComponent<SpriteRenderer>().bounds.max.y;
-            Bg.transform.position = new Vector3(0, (2 * (i - 1) * BgY + BgY), 0);
+            Bg.transform.position = new Vector3(0, (2 * (i - 1) * BgY + BgY), 10);
         }
 
 
