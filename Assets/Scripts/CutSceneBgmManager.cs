@@ -32,23 +32,28 @@ public class CutSceneBgmManager : UI_Scene
         if (GameObject.Find("CheckPoint1") != null)
         {
             Managers.Sound.GetCurrent().volume = 0.1f;
+            Managers.Resource.Destroy(GameObject.Find("CheckPoint1"));
         }
 
         if (GameObject.Find("CheckPoint2") != null)
         {
             Managers.Sound.Clear();
+            Managers.Resource.Destroy(GameObject.Find("CheckPoint2"));
         }
 
         if (GameObject.Find("CheckPoint3") != null)
         {
-            Managers.Sound.Play("BGM/Sound_Beep", Sound.Bgm);
-
+            if (Managers.Sound.GetCurrent().clip == null || Managers.Sound.GetCurrent().clip.name != "Sound_Beep")
+                Managers.Sound.Play("BGM/Sound_Beep", Sound.Bgm);
+            Managers.Resource.Destroy(GameObject.Find("CheckPoint3"));
         }
 
         if (GameObject.Find("CheckPoint4") != null)
         {
             Managers.Sound.Clear();
-            Managers.Sound.Play("Explosion 1", Sound.Effect, 0.5f);
+            Managers.Sound.Play("Explosion 1");
+            Managers.Resource.Destroy(GameObject.Find("CheckPoint4"));
+
         }
     }
 
