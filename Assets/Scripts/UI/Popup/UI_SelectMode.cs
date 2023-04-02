@@ -40,8 +40,11 @@ public class UI_SelectMode : UI_Popup
 
         Time.timeScale = 1;
         Managers.Game.Mode = Define.Mode.StoryMode;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
-        Managers.UI.ShowSceneUI<UI_Game>();
+
+        // ÄÆ¾À init
+        Managers.Cutscene.InitCutsceneInfo();
+        Managers.Cutscene.PlayCutscene();
+
     }
 
     void ToScoreGameScene()
