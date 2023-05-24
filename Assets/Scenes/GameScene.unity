@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &214744328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477712270271686974, guid: 35b0fe5f2a8ac46469853053329fb126, type: 3}
+  m_PrefabInstance: {fileID: 498999007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &497964339
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +838,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6981c0754502f346a5d99cc91a55b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1345409295 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8477712270271686971, guid: 35b0fe5f2a8ac46469853053329fb126, type: 3}
+  m_PrefabInstance: {fileID: 498999007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1345409296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214744328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b7c77c33d548349867f50dd48362a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _col: {fileID: 0}
+  isContactAnything: 0
 --- !u!1 &1364061928
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450525666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.0479999, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1084,6 +1108,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1526565442}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1812389491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1812389493}
+  - component: {fileID: 1812389492}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1812389492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812389491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b7c77c33d548349867f50dd48362a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _col: {fileID: 1345409295}
+  isContactAnything: 0
+--- !u!4 &1812389493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812389491}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7527578, y: 1.3866363, z: 6.221008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992990523
 GameObject:

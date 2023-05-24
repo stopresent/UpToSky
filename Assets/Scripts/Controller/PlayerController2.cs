@@ -31,14 +31,14 @@ public class PlayerController2 : MonoBehaviour
         _col = _rb.GetComponent<Collider2D>();
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //CaculateThrowVector();
         PathController.StartVisualizingPath(gameObject);
     }
 
-    private void OnMouseDrag()
+    public void OnMouseDrag()
     {
         endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CaculateThrowVector();
@@ -61,7 +61,7 @@ public class PlayerController2 : MonoBehaviour
         _lr.enabled= true;
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         RemoveArrow();
         Throw ();

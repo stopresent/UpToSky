@@ -15,7 +15,11 @@ public class BannerAdmob : MonoBehaviour
     }
     private void RequestBanner()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+        // 안드로이드 광고 id??
+        // ca-app-pub-1536666317304059~7180163006
+
+        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+        string adUnitId = "ca-app-pub-1536666317304059/4696663337";
 
         // Clean up banner ad before creating a new one
         if (this.bannerView != null)

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using static Define;
@@ -26,6 +27,7 @@ public class UI_Game : UI_Scene
     enum Images
     {
         ScoreImage,
+        BG,
     }
 
     enum GameObjects
@@ -36,7 +38,7 @@ public class UI_Game : UI_Scene
     public int highestScore;
     public int Score;
     public int PrevBlockSpawnH;
-    public int BlockSpawnHInterval = 5; // 매 2미터마다 블록이 스폰된다
+    public int BlockSpawnHInterval = 3; // 매 2미터마다 블록이 스폰된다
     public int Gold;
     public int PrevIncomeH = 0;
     public int GoldIncomeHInterval = 10; // 매 10미터마다 골드를 받는다
@@ -63,6 +65,9 @@ public class UI_Game : UI_Scene
         BindImage(typeof(Images));
 
         GetButton((int)Buttons.SettingBtn).gameObject.BindEvent(Setting);
+        GetImage((int)Images.BG).gameObject.BindEvent(GetMouseDown, UIEvent.PointerDown);
+        GetImage((int)Images.BG).gameObject.BindEvent(GetMouseDrag, UIEvent.Pressed);
+        GetImage((int)Images.BG).gameObject.BindEvent(GetMouseUp, UIEvent.PointerUp);
         //GetButton((int)Buttons.SpiderManModeBtn).gameObject.BindEvent(SpiderManMode);
         #region 골드 불러오기
         if (PlayerPrefs.HasKey("gold"))
@@ -83,11 +88,9 @@ public class UI_Game : UI_Scene
         return true;
     }
 
-
-
     private void Update()
     {
-        
+
         #region Anim
         // 애니메이션
 
@@ -161,6 +164,21 @@ public class UI_Game : UI_Scene
         }
         RefreshUI();
         GoldIncomeByHeight();
+    }
+
+    public void GetMouseDown()
+    {
+        anim.gameObject.GetComponent<PlayerController2>().OnMouseDown();
+    }
+
+    public void GetMouseDrag()
+    {
+        anim.gameObject.GetComponent<PlayerController2>().OnMouseDrag();
+    }
+
+    public void GetMouseUp()
+    {
+        anim.gameObject.GetComponent<PlayerController2>().OnMouseUp();
     }
 
     void RefreshUI()

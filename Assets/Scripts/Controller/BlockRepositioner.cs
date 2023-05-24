@@ -6,8 +6,8 @@ public class BlockRepositioner : MonoBehaviour
 {
     GameObject nearBlock;
     GameObject nearWall;
-    float radius = 0.8f;
-    float Wradius = 1.5f;
+    float radius = 1.3f;
+    float Wradius = 2.3f;
     float bound;
 
     void Start()
@@ -19,7 +19,8 @@ public class BlockRepositioner : MonoBehaviour
         if (nearBlock != null)
         {
             if (Vector3.Distance(transform.position, nearBlock.transform.position) < radius)
-                transform.position += transform.position - nearBlock.transform.position;
+                //transform.position += transform.position - nearBlock.transform.position;
+                return;
 
             if (Mathf.Abs(transform.position.x) > bound)
             {
@@ -32,7 +33,8 @@ public class BlockRepositioner : MonoBehaviour
         if (nearWall != null)
         {
             if (Vector3.Distance(transform.position, nearWall.transform.position) < Wradius)
-                transform.position += transform.position - nearWall.transform.position;
+                //transform.position += transform.position - nearWall.transform.position;
+                return;
 
             if (Mathf.Abs(transform.position.x) > bound)
             {

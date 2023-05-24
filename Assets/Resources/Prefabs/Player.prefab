@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8477712270271686973}
   - component: {fileID: 12231639444149434}
   - component: {fileID: 4666213324768650078}
-  - component: {fileID: 3489693186613367381}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -354,17 +353,3 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &3489693186613367381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8477712270271686974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b7c77c33d548349867f50dd48362a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _col: {fileID: 0}
-  isContactAnything: 0

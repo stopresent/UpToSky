@@ -18,7 +18,7 @@ public class PathController : MonoBehaviour
         var color = new Color(255/255f, 255/255f, 255/255f);
         color.a = 100/255f;
         clone.GetComponent<SpriteRenderer>().color = color;
-
+        clone.GetComponent<TrailRenderer>().enabled = false;
         Physics2D.simulationMode = SimulationMode2D.Script;
     }
 
