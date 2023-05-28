@@ -18,7 +18,7 @@ public class DragController : MonoBehaviour
     Vector2 startPoint;
     Vector2 endPoint;
     Vector2 direction;
-    public Vector2 force;
+    Vector2 force;
     float distance;
 
     private void Start()

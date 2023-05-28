@@ -6,7 +6,7 @@ public class CoinController : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Player")
+        if (collision.name != "Player")
             return;
 
         GameObject.Find("UI_Game").GetComponent<UI_Game>().Gold += 1;
