@@ -50,7 +50,7 @@ public class Define
     {
         None,
         BouncyState,
-
+        Flying,
     }
 
 }
