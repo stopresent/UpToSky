@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_Dead : UI_Popup
 {
@@ -17,6 +18,7 @@ public class UI_Dead : UI_Popup
 
     int highestScore;
     int gold;
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -56,16 +58,21 @@ public class UI_Dead : UI_Popup
         Managers.Sound.Clear();
         Managers.Sound.Play("Sound_CloseUI");
         Managers.UI.ClosePopupUI(this);
+        
+        Managers.Game.AdCount++;
+
+        if (Managers.Game.AdCount % 3 != 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            return;
+        }
 
         #region
+
         // 전면 광고 추가
         Managers.Sound.Clear();
 
         Managers.Ads.ShowAd();
-        //Managers.Ads.gameObject.GetComponent<ButtonBehaviour>().gameObject.GetComponent<Canvas>().sortingOrder = 20;
-
-        // TODO
-        // 꺼진거 확인
 
         #endregion
 
