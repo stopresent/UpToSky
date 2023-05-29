@@ -50,12 +50,28 @@ public class FrightBlockController : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag != "Player")
+            return;
+
+        collision.transform.SetParent(transform, true);
+    }
+
     public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.tag != "Player")
             return;
 
-        collision.transform.position = collision.transform.position + new Vector3(1 * vec, 0, 0) * 0.01f;
+        //collision.transform.position = collision.transform.position + new Vector3(1 * vec, 0, 0) * 0.01f;
         
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag != "Player")
+            return;
+
+        collision.transform.SetParent(null, true);
     }
 }

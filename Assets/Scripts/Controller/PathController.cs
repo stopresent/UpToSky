@@ -9,11 +9,13 @@ public class PathController : MonoBehaviour
 
     public static void StartVisualizingPath(GameObject player)
     {
-        player.GetComponent<Rigidbody2D>().simulated = false;
-        player.GetComponent<CircleCollider2D>().enabled= false;
+        //player.GetComponent<Rigidbody2D>().simulated = false;
+        //player.GetComponent<CircleCollider2D>().enabled= false;
 
         clone = Instantiate(player, player.transform.position, Quaternion.identity);
         clone.tag = "Clone";
+        clone.layer = 10;
+        clone.transform.localScale = Vector3.one * 0.25f;
         player.GetComponent<PlayerController2>().State = Define.State.None;
         clone.GetComponent<Rigidbody2D>().simulated = true;
         clone.GetComponent<CircleCollider2D>().enabled = true;
