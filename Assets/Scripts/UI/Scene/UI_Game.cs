@@ -168,16 +168,22 @@ public class UI_Game : UI_Scene
 
     public void GetMouseDown()
     {
+        if (Managers.Game.State != Define.State.None) return;
+
         anim.gameObject.GetComponent<PlayerController2>().OnMouseDown();
     }
 
     public void GetMouseDrag()
     {
+        if (Managers.Game.State != Define.State.None) return;
+
         anim.gameObject.GetComponent<PlayerController2>().OnMouseDrag();
     }
 
     public void GetMouseUp()
     {
+        if (Managers.Game.State != Define.State.None) return;
+
         anim.gameObject.GetComponent<PlayerController2>().OnMouseUp();
     }
 
