@@ -14,9 +14,9 @@ public class PathController : MonoBehaviour
 
         clone = Instantiate(player, player.transform.position, Quaternion.identity);
         clone.tag = "Clone";
+        player.GetComponent<PlayerController2>().State = Define.State.None;
         clone.GetComponent<Rigidbody2D>().simulated = true;
         clone.GetComponent<CircleCollider2D>().enabled = true;
-
         var color = new Color(255/255f, 255/255f, 255/255f);
         color.a = 100/255f;
         clone.GetComponent<SpriteRenderer>().color = color;

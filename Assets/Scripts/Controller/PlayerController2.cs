@@ -29,14 +29,16 @@ public class PlayerController2 : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _lr = GetComponent<LineRenderer>();
-        _lr.startColor= Color.white;
-        _lr.endColor= Color.white;
+        _lr.startColor = Color.white;
+        _lr.endColor = Color.white;
         _col = _rb.GetComponent<Collider2D>();
         State = Define.State.None;
     }
 
     public void MyOnMouseDown()
     {
+        State = Define.State.None;
+
         startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CaculateThrowVector();
         PathController.StartVisualizingPath(gameObject);
@@ -44,6 +46,8 @@ public class PlayerController2 : MonoBehaviour
 
     public void MyOnMouseDrag()
     {
+        State = Define.State.None;
+
         endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CaculateThrowVector();
         PathController.VisualizePath(gameObject, force);
@@ -59,14 +63,16 @@ public class PlayerController2 : MonoBehaviour
 
     public void MyOnMouseUp()
     {
+        State = Define.State.None;
+
         RemoveArrow();
-        Throw ();
+        Throw();
         PathController.StopVisualizingPath(gameObject);
     }
 
     void RemoveArrow()
     {
-        _lr.enabled= false;
+        _lr.enabled = false;
     }
 
     void Throw()
@@ -78,7 +84,6 @@ public class PlayerController2 : MonoBehaviour
     {
         if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")
             return;
-        if (collision.gameObject.tag == "Clone") return;
 
         State = Define.State.None;
 
@@ -110,12 +115,17 @@ public class PlayerController2 : MonoBehaviour
 
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        State = Define.State.None;
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")
             return;
 
-        State = Define.State.Flying;
+        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Ground")  State = Define.State.Flying;
 
         // ¿­±â±¸¶û ´ê¾Ò´Ù°¡ ¶³¾îÁö¸é
         if (collision.gameObject.name == "AirBalloonBlock" && gameObject.tag == "Player")
