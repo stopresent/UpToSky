@@ -855,6 +855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b7c77c33d548349867f50dd48362a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Xadd: 3
+  Yadd: 6
   _col: {fileID: 0}
   isContactAnything: 0
 --- !u!1 &1364061928
@@ -1138,6 +1140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b7c77c33d548349867f50dd48362a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Xadd: 3
+  Yadd: 7
   _col: {fileID: 1345409295}
   isContactAnything: 0
 --- !u!4 &1812389493

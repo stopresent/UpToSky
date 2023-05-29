@@ -10,6 +10,9 @@ public class PlayerController2 : MonoBehaviour
     Rigidbody2D _rb;
     LineRenderer _lr;
 
+    public int Xadd = 3;
+    public int Yadd = 7;
+
     Vector2 startPoint;
     Vector2 endPoint;
     float distance;
@@ -31,14 +34,14 @@ public class PlayerController2 : MonoBehaviour
         _col = _rb.GetComponent<Collider2D>();
     }
 
-    public void OnMouseDown()
+    public void MyOnMouseDown()
     {
         startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //CaculateThrowVector();
         PathController.StartVisualizingPath(gameObject);
     }
 
-    public void OnMouseDrag()
+    public void MyOnMouseDrag()
     {
         endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CaculateThrowVector();
@@ -50,8 +53,8 @@ public class PlayerController2 : MonoBehaviour
     {
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
-        force.x = distance * direction.x * PushForce;
-        force.y = distance * direction.y * PushForce * 7;
+        force.x = distance * direction.x * PushForce * Xadd;
+        force.y = distance * direction.y * PushForce * Yadd;
     }
 
     void SetArrow()
@@ -61,7 +64,7 @@ public class PlayerController2 : MonoBehaviour
         _lr.enabled= true;
     }
 
-    public void OnMouseUp()
+    public void MyOnMouseUp()
     {
         RemoveArrow();
         Throw ();
@@ -178,7 +181,7 @@ public class PlayerController2 : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         Managers.UI.ShowPopupUI<UI_Dead>();
-        Destroy(GameObject.Find("Player").GetComponent<PlayerController>());
+        Destroy(GameObject.Find("Player").GetComponent<PlayerController2>());
     }
 
 }

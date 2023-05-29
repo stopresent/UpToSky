@@ -168,17 +168,17 @@ public class UI_Game : UI_Scene
 
     public void GetMouseDown()
     {
-        anim.gameObject.GetComponent<PlayerController2>().OnMouseDown();
+        anim.gameObject.GetComponent<PlayerController2>().MyOnMouseDown();
     }
 
     public void GetMouseDrag()
     {
-        anim.gameObject.GetComponent<PlayerController2>().OnMouseDrag();
+        anim.gameObject.GetComponent<PlayerController2>().MyOnMouseDrag();
     }
 
     public void GetMouseUp()
     {
-        anim.gameObject.GetComponent<PlayerController2>().OnMouseUp();
+        anim.gameObject.GetComponent<PlayerController2>().MyOnMouseUp();
     }
 
     void RefreshUI()

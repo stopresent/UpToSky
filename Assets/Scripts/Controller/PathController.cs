@@ -20,6 +20,7 @@ public class PathController : MonoBehaviour
         clone.GetComponent<SpriteRenderer>().color = color;
         clone.GetComponent<TrailRenderer>().enabled = false;
         Physics2D.simulationMode = SimulationMode2D.Script;
+        Debug.Log("tq");
     }
 
     public static void VisualizePath(GameObject player, Vector3 force)
