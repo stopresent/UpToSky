@@ -1,3 +1,4 @@
+using Cinemachine;
 using Mono.Cecil;
 using System;
 using System.Collections;
@@ -242,7 +243,7 @@ public class UI_Game : UI_Scene
         GameObject scoreModeBG = Managers.Resource.Instantiate("ScoreModeBG");
         GameObject elavator = GameObject.Find("Elevator");
         if (elavator != null)
-            scoreModeBG.transform.SetParent(elavator.transform);
+            scoreModeBG.transform.SetParent(elavator.transform.GetComponentInChildren<CinemachineVirtualCamera>().transform);
     }
 
     void Setting()
