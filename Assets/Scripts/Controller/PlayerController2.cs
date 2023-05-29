@@ -22,6 +22,9 @@ public class PlayerController2 : MonoBehaviour
 
     public Collider2D _col;
 
+    public Define.State _state = Define.State.None;
+    public Define.State State { get { return _state; } set { _state = value; } }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -29,13 +32,13 @@ public class PlayerController2 : MonoBehaviour
         _lr.startColor= Color.white;
         _lr.endColor= Color.white;
         _col = _rb.GetComponent<Collider2D>();
-        Managers.Game.State = Define.State.None;
+        State = Define.State.None;
     }
 
     public void MyOnMouseDown()
     {
         startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //CaculateThrowVector();
+        CaculateThrowVector();
         PathController.StartVisualizingPath(gameObject);
     }
 
@@ -43,7 +46,6 @@ public class PlayerController2 : MonoBehaviour
     {
         endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CaculateThrowVector();
-        SetArrow();
         PathController.VisualizePath(gameObject, force);
     }
 
@@ -53,13 +55,6 @@ public class PlayerController2 : MonoBehaviour
         direction = (startPoint - endPoint).normalized;
         force.x = distance * direction.x * PushForce * Xadd;
         force.y = distance * direction.y * PushForce * Yadd;
-    }
-
-    void SetArrow()
-    {
-        _lr.positionCount = 1;
-        _lr.SetPosition(0, force);
-        _lr.enabled= true;
     }
 
     public void MyOnMouseUp()
@@ -83,8 +78,9 @@ public class PlayerController2 : MonoBehaviour
     {
         if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")
             return;
+        if (collision.gameObject.tag == "Clone") return;
 
-        Managers.Game.State = Define.State.None;
+        State = Define.State.None;
 
         // 블럭들의 효과들 여기에서 추가
 
@@ -98,7 +94,7 @@ public class PlayerController2 : MonoBehaviour
         if (collision.gameObject.name == "BouncyBlock")
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 3.0f), ForceMode2D.Impulse);
-            Managers.Game.State = Define.State.BouncyState;
+            State = Define.State.BouncyState;
             return;
         }
 
@@ -119,7 +115,7 @@ public class PlayerController2 : MonoBehaviour
         if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")
             return;
 
-        Managers.Game.State = Define.State.Flying;
+        State = Define.State.Flying;
 
         // 열기구랑 닿았다가 떨어지면
         if (collision.gameObject.name == "AirBalloonBlock" && gameObject.tag == "Player")

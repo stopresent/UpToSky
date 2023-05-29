@@ -13,15 +13,15 @@ public class PathController : MonoBehaviour
         player.GetComponent<CircleCollider2D>().enabled= false;
 
         clone = Instantiate(player, player.transform.position, Quaternion.identity);
+        clone.tag = "Clone";
         clone.GetComponent<Rigidbody2D>().simulated = true;
         clone.GetComponent<CircleCollider2D>().enabled = true;
+
         var color = new Color(255/255f, 255/255f, 255/255f);
         color.a = 100/255f;
         clone.GetComponent<SpriteRenderer>().color = color;
         clone.GetComponent<TrailRenderer>().enabled = false;
-        clone.tag = "Untagged";
         Physics2D.simulationMode = SimulationMode2D.Script;
-        Debug.Log("tq");
     }
 
     public static void VisualizePath(GameObject player, Vector3 force)

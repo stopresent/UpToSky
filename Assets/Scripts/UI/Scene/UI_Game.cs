@@ -183,21 +183,21 @@ public class UI_Game : UI_Scene
 
     public void GetMouseDown()
     {
-        if (Managers.Game.State != Define.State.None) return;
+        if (anim.gameObject.GetComponent<PlayerController2>().State != Define.State.None) return;
 
         anim.gameObject.GetComponent<PlayerController2>().MyOnMouseDown();
     }
 
     public void GetMouseDrag()
     {
-        if (Managers.Game.State != Define.State.None) return;
+        if (anim.gameObject.GetComponent<PlayerController2>().State != Define.State.None) return;
 
         anim.gameObject.GetComponent<PlayerController2>().MyOnMouseDrag();
     }
 
     public void GetMouseUp()
     {
-        if (Managers.Game.State != Define.State.None) return;
+        if (anim.gameObject.GetComponent<PlayerController2>().State != Define.State.None) return;
 
         anim.gameObject.GetComponent<PlayerController2>().MyOnMouseUp();
     }
@@ -237,7 +237,6 @@ public class UI_Game : UI_Scene
             float BgY = Bg.GetComponent<SpriteRenderer>().bounds.max.y;
             Bg.transform.position = new Vector3(0, (2 * (i - 1) * BgY + BgY), 10);
         }
-
 
     }
 
