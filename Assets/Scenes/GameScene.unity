@@ -856,7 +856,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _col: {fileID: 0}
-  isContactAnything: 0
 --- !u!1 &1364061928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _col: {fileID: 1345409295}
-  isContactAnything: 0
 --- !u!4 &1812389493
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,7 +1334,7 @@ Transform:
   m_GameObject: {fileID: 1999904233}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 4.82, y: 2.1476002, z: 1}
+  m_LocalScale: {x: 17.77375, y: 2.1476002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
