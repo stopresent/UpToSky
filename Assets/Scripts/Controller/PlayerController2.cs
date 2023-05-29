@@ -105,7 +105,7 @@ public class PlayerController2 : MonoBehaviour
         }
 
         // 열기구 블록
-        if (collision.gameObject.name == "AirBalloonBlock")
+        if (collision.gameObject.name == "AirBalloonBlock" && gameObject.tag == "Player")
             StartCoroutine(ItsAirBalloon(collision.gameObject));
 
         //착지
@@ -129,13 +129,13 @@ public class PlayerController2 : MonoBehaviour
         isContactAnything = false;
 
         // 열기구랑 닿았다가 떨어지면
-        if (collision.gameObject.name == "AirBalloonBlock")
+        if (collision.gameObject.name == "AirBalloonBlock" && gameObject.tag == "Player")
             StartCoroutine(ItWasAirBalloon(collision.gameObject));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "BlackHole")
+        if (collision.gameObject.name == "BlackHole" && gameObject.tag == "Player")
             // StartCoroutine(Boom()); 이렇게 코드를 작성하면 Stop이 안됨
             // 둘다 string으로 넣어줘야 stop이 가능하다.
             StartCoroutine("Boom");
@@ -158,7 +158,7 @@ public class PlayerController2 : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "BlackHole")
+        if (collision.gameObject.name == "BlackHole" && gameObject.tag == "Player")
             StopCoroutine("Boom");
     }
 

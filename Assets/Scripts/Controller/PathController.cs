@@ -19,6 +19,7 @@ public class PathController : MonoBehaviour
         color.a = 100/255f;
         clone.GetComponent<SpriteRenderer>().color = color;
         clone.GetComponent<TrailRenderer>().enabled = false;
+        clone.tag = "Untagged";
         Physics2D.simulationMode = SimulationMode2D.Script;
         Debug.Log("tq");
     }
