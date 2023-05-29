@@ -111,34 +111,56 @@ public class UI_Game : UI_Scene
         if (highestScore < Score)
             highestScore = Score;
 
+        SetBgm();
+
+        if (Score > PrevBlockSpawnH + BlockSpawnHInterval)
+        {
+            PrevBlockSpawnH = Score;
+            GameObject.Find("BlockSpawner").GetComponent<BlockSpawner>().Spawn = true;
+        }
+        RefreshUI();
+        GoldIncomeByHeight();
+    }
+
+    public void SetBgm()
+    {
         if (Managers.Game.Mode == Define.Mode.StoryMode)
         {
             if (Score < (int)Define.Height.Mountain)
             {
+                if (Managers.Sound.GetCurrent().clip != null && Managers.Sound.GetCurrent().clip.name == "Sound_SkyWorld") return;
+
                 // 에베레스트 브금
                 if (Managers.Sound.GetCurrent().clip == null || Managers.Sound.GetCurrent().clip.name != "Sound_Mountain")
                     Managers.Sound.Play("BGM/Sound_Mountain", Sound.Bgm);
             }
             else if (Score < (int)Define.Height.SkyWorld)
             {
+                if (Managers.Sound.GetCurrent().clip.name == "Sound_Stratosphere") return;
+
                 // 하늘 세계 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_SkyWorld")
                     Managers.Sound.Play("BGM/Sound_SkyWorld", Sound.Bgm);
             }
             else if (Score < (int)Define.Height.Stratosphere)
             {
+                if (Managers.Sound.GetCurrent().clip.name == "Sound_Thermosphere") return;
+
                 // 성층권 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Stratosphere")
                     Managers.Sound.Play("BGM/Sound_Stratosphere", Sound.Bgm);
             }
             else if (Score < (int)Define.Height.Thermosphere)
             {
+                if (Managers.Sound.GetCurrent().clip.name == "Sound_GalaxyBlues") return;
+
                 // 열권 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_Thermosphere")
                     Managers.Sound.Play("BGM/Sound_Thermosphere", Sound.Bgm);
             }
             else if (Score <= (int)Define.Height.GalaxyBlues)
             {
+
                 // 우주 브금
                 if (Managers.Sound.GetCurrent().clip.name != "Sound_GalaxyBlues")
                 {
@@ -157,14 +179,6 @@ public class UI_Game : UI_Scene
                 Managers.UI.ShowSceneUI<UI_Ending>();
             }
         }
-
-        if (Score > PrevBlockSpawnH + BlockSpawnHInterval)
-        {
-            PrevBlockSpawnH = Score;
-            GameObject.Find("BlockSpawner").GetComponent<BlockSpawner>().Spawn = true;
-        }
-        RefreshUI();
-        GoldIncomeByHeight();
     }
 
     public void GetMouseDown()
