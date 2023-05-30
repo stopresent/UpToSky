@@ -115,11 +115,6 @@ public class PlayerController2 : MonoBehaviour
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        State = Define.State.None;
-    }
-
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Block" && collision.gameObject.tag != "Ground")

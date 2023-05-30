@@ -10,7 +10,7 @@ public class PathController : MonoBehaviour
     public static void StartVisualizingPath(GameObject player)
     {
         //player.GetComponent<Rigidbody2D>().simulated = false;
-        //player.GetComponent<CircleCollider2D>().enabled= false;
+        //player.GetComponent<CircleCollider2D>().enabled = false;
 
         clone = Instantiate(player, player.transform.position, Quaternion.identity);
         clone.tag = "Clone";
